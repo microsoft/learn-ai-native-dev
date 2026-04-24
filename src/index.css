@@ -1,0 +1,783 @@
+@import 'tailwindcss';
+@import "tw-animate-css";
+
+@layer base {
+  * {
+    @apply border-border
+  }
+}
+
+:root,
+.dark {
+  --background: oklch(0.07 0 0);
+  --foreground: oklch(0.95 0 0);
+
+  --card: oklch(0.10 0 0);
+  --card-foreground: oklch(0.95 0 0);
+  --popover: oklch(0.12 0 0);
+  --popover-foreground: oklch(0.95 0 0);
+
+  --primary: oklch(0.95 0 0);
+  --primary-foreground: oklch(0.07 0 0);
+  --secondary: oklch(0.18 0 0);
+  --secondary-foreground: oklch(0.90 0 0);
+  --muted: oklch(0.15 0 0);
+  --muted-foreground: oklch(0.65 0 0);
+  --accent: oklch(0.90 0 0);
+  --accent-foreground: oklch(0.07 0 0);
+  --destructive: oklch(0.55 0.20 15);
+  --destructive-foreground: oklch(0.95 0 0);
+
+  --border: oklch(0.25 0 0);
+  --input: oklch(0.12 0 0);
+  --ring: oklch(0.95 0 0);
+
+  --radius: 0.5rem;
+
+  --font-sans: "Inter";
+
+  --font-serif: "PT Serif";
+
+  --font-mono: "JetBrains Mono";
+
+  --chart-1: oklch(0.95 0 0);
+
+  --chart-2: oklch(0.75 0 0);
+
+  --chart-3: oklch(0.55 0 0);
+
+  --chart-4: oklch(0.35 0 0);
+
+  --chart-5: oklch(0.25 0 0);
+
+  --sidebar: oklch(0.10 0 0);
+
+  --sidebar-foreground: oklch(0.90 0 0);
+
+  --sidebar-primary: oklch(0.95 0 0);
+
+  --sidebar-primary-foreground: oklch(0.07 0 0);
+
+  --sidebar-accent: oklch(0.20 0 0);
+
+  --sidebar-accent-foreground: oklch(0.95 0 0);
+
+  --sidebar-border: oklch(0.25 0 0);
+
+  --sidebar-ring: oklch(0.95 0 0);
+
+  --shadow-color: oklch(0.00 0 0);
+
+  --shadow-opacity: 0.3;
+
+  --shadow-blur: 16px;
+
+  --shadow-spread: 0px;
+
+  --shadow-offset-x: 0px;
+
+  --shadow-offset-y: 4px;
+}
+
+.light {
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.09 0 0);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.09 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.09 0 0);
+
+  --primary: oklch(0.09 0 0);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.96 0 0);
+  --secondary-foreground: oklch(0.09 0 0);
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  --accent: oklch(0.96 0 0);
+  --accent-foreground: oklch(0.09 0 0);
+  --destructive: oklch(0.55 0.20 15);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.90 0 0);
+  --input: oklch(0.90 0 0);
+  --ring: oklch(0.09 0 0);
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) * 1.5);
+  --radius-xl: calc(var(--radius) * 2);
+  --radius-2xl: calc(var(--radius) * 3);
+  --radius-full: 9999px;
+
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html {
+  font-size: 112.5%;
+}
+
+body {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-size: 1rem;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.dark body {
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(255,255,255,0.02) 0%, transparent 50%),
+    var(--background);
+}
+
+.light body {
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(0,0,0,0.02) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(0,0,0,0.01) 0%, transparent 50%),
+    var(--background);
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+code, pre {
+  font-family: var(--font-mono);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ===== Terminal Track Theme Overrides ===== */
+/*
+ * "Hybrid Matrix" palette — refined green with semantic accents.
+ * Keeps the terminal DNA but modernizes readability & contrast.
+ *
+ * COLOR TOKENS:
+ *   --t-bg:          #0b0d0c   Warm terminal black
+ *   --t-surface:     #141816   Dark olive card surface
+ *   --t-accent:      #39e875   Desaturated green (primary accent)
+ *   --t-text:        #c4cdc8   Neutral gray-green body text
+ *   --t-text-bright: #e8f0eb   Near-white headings
+ *   --t-text-dim:    #6b7e72   Muted sage labels
+ *   --t-code:        #8fdca0   Softened code green
+ *   --t-info:        #58b5e8   Blue for informational callouts
+ *   --t-warn:        #e8b83a   Amber for warnings
+ *   --t-error:       #e85858   Red for errors
+ *
+ * Terminals are ALWAYS dark. These override both .light and .dark.
+ * Uses !important to beat :root declarations in main.css cascade.
+ */
+
+.terminal-theme,
+.light .terminal-theme,
+.dark .terminal-theme {
+  --background: #0b0d0c !important;
+  --foreground: #c4cdc8 !important;
+  --card: #141816 !important;
+  --card-foreground: #c4cdc8 !important;
+  --popover: #141816 !important;
+  --popover-foreground: #c4cdc8 !important;
+  --muted: #181c1a !important;
+  --muted-foreground: #7d9185 !important;
+  --border: rgba(57, 232, 117, 0.15) !important;
+  --primary: #39e875 !important;
+  --primary-foreground: #0b0d0c !important;
+  --secondary: #181c1a !important;
+  --secondary-foreground: #c4cdc8 !important;
+  --accent: rgba(57, 232, 117, 0.08) !important;
+  --accent-foreground: #c4cdc8 !important;
+  --input: rgba(57, 232, 117, 0.1) !important;
+  --ring: rgba(57, 232, 117, 0.4) !important;
+  color-scheme: dark;
+  color: #c4cdc8 !important;
+}
+
+/* Force text-foreground utility inside terminal theme */
+.terminal-theme .text-foreground {
+  color: #c4cdc8 !important;
+}
+
+/* Force primary color utilities inside terminal theme */
+.terminal-theme .text-primary {
+  color: #39e875 !important;
+}
+.terminal-theme .text-primary\/60 {
+  color: rgba(57, 232, 117, 0.6) !important;
+}
+.terminal-theme .bg-primary\/10 {
+  background-color: rgba(57, 232, 117, 0.1) !important;
+}
+.terminal-theme .bg-primary\/20 {
+  background-color: rgba(57, 232, 117, 0.2) !important;
+}
+.terminal-theme .border-primary\/25 {
+  border-color: rgba(57, 232, 117, 0.25) !important;
+}
+
+/* ===== Terminal: Direct element overrides ===== */
+/* These catch everything that bg-card/text-foreground/etc. might miss */
+
+/* Card backgrounds — no white ever */
+.terminal-theme [data-slot="card"] {
+  background-color: #141816 !important;
+  color: #c4cdc8 !important;
+  border-color: rgba(57, 232, 117, 0.15) !important;
+}
+
+/* Card header area — slightly darker than body */
+.terminal-theme [data-slot="card"] > .border-b {
+  background-color: #111412 !important;
+  border-color: rgba(57, 232, 117, 0.1) !important;
+}
+
+/* Step badge */
+.terminal-theme [data-slot="card"] .rounded-full.border {
+  background-color: rgba(57, 232, 117, 0.08) !important;
+  border-color: rgba(57, 232, 117, 0.2) !important;
+  color: #39e875 !important;
+}
+
+/* Step title */
+.terminal-theme [data-slot="card"] h3 {
+  color: #e8f0eb !important;
+}
+
+/* Step content paragraphs */
+.terminal-theme [data-slot="card"] p,
+.terminal-theme [data-slot="card"] li {
+  color: #c4cdc8 !important;
+}
+
+/* Step content headings */
+.terminal-theme [data-slot="card"] h4 {
+  color: #e8f0eb !important;
+}
+
+/* Strong/bold text inside terminal cards */
+.terminal-theme [data-slot="card"] strong {
+  color: #e8f0eb !important;
+}
+
+/* Inline code inside terminal cards */
+.terminal-theme [data-slot="card"] code:not(pre code) {
+  background-color: rgba(57, 232, 117, 0.08) !important;
+  border-color: rgba(57, 232, 117, 0.15) !important;
+  color: #8fdca0 !important;
+}
+
+/* Code blocks inside terminal cards */
+.terminal-theme [data-slot="card"] pre {
+  background-color: #0b0d0c !important;
+  border-color: rgba(57, 232, 117, 0.12) !important;
+  box-shadow: 0 0 15px rgba(57, 232, 117, 0.03), inset 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.terminal-theme [data-slot="card"] pre code {
+  color: #8fdca0 !important;
+}
+
+/* Links inside terminal cards */
+.terminal-theme [data-slot="card"] a {
+  color: #39e875 !important;
+  text-decoration-color: rgba(57, 232, 117, 0.4) !important;
+}
+
+.terminal-theme [data-slot="card"] a:hover {
+  text-decoration-color: #39e875 !important;
+}
+
+/* Muted text inside terminal cards */
+.terminal-theme [data-slot="card"] .text-muted-foreground {
+  color: #7d9185 !important;
+}
+
+/* Table headers & borders */
+.terminal-theme [data-slot="card"] table th {
+  color: #e8f0eb !important;
+  background-color: rgba(57, 232, 117, 0.04) !important;
+}
+
+.terminal-theme [data-slot="card"] table td {
+  color: #c4cdc8 !important;
+}
+
+.terminal-theme [data-slot="card"] table tr {
+  border-color: rgba(57, 232, 117, 0.08) !important;
+}
+
+/* Callout boxes — semantic amber for warnings */
+.terminal-theme [data-slot="card"] .border-amber-500\/20,
+.terminal-theme [data-slot="card"] [class*="border-amber"] {
+  border-color: rgba(232, 184, 58, 0.25) !important;
+  background-color: rgba(232, 184, 58, 0.06) !important;
+  color: #c4cdc8 !important;
+}
+
+/* Celebration boxes */
+.terminal-theme [data-slot="card"] .border-primary\/20 {
+  border-color: rgba(57, 232, 117, 0.2) !important;
+  background-color: rgba(57, 232, 117, 0.05) !important;
+}
+
+/* Blockquotes */
+.terminal-theme [data-slot="card"] blockquote {
+  border-color: rgba(57, 232, 117, 0.25) !important;
+  background-color: rgba(57, 232, 117, 0.04) !important;
+  color: #b0c4b8 !important;
+}
+
+/* Collapsible triggers */
+.terminal-theme [data-slot="card"] [data-state] {
+  color: #7d9185;
+}
+.terminal-theme [data-slot="card"] [data-state]:hover {
+  color: #e8f0eb;
+}
+
+/* Collapsible border-l */
+.terminal-theme [data-slot="card"] .border-l.border-border {
+  border-color: rgba(57, 232, 117, 0.12) !important;
+}
+
+/* List markers */
+.terminal-theme [data-slot="card"] ol {
+  --tw-marker-color: #39e875;
+}
+.terminal-theme [data-slot="card"] ul {
+  --tw-marker-color: #39e875;
+}
+.terminal-theme [data-slot="card"] li::marker {
+  color: #39e875 !important;
+}
+
+/* HR inside cards */
+.terminal-theme [data-slot="card"] hr {
+  border-color: rgba(57, 232, 117, 0.1) !important;
+}
+
+/* ===== Terminal: PromptBox overrides ===== */
+/* The PromptBox header bar */
+.terminal-theme [data-slot="card"] [data-slot="card"] {
+  background-color: #111412 !important;
+  border-color: rgba(57, 232, 117, 0.18) !important;
+}
+
+/* PromptBox header (bg-muted/50) */
+.terminal-theme [data-slot="card"] [data-slot="card"] > .border-b {
+  background-color: #141816 !important;
+  border-color: rgba(57, 232, 117, 0.12) !important;
+}
+
+/* PromptBox prompt badge */
+.terminal-theme [data-slot="card"] [data-slot="card"] .rounded-full {
+  background-color: rgba(57, 232, 117, 0.1) !important;
+  border-color: rgba(57, 232, 117, 0.2) !important;
+  color: #39e875 !important;
+}
+
+/* PromptBox title */
+.terminal-theme [data-slot="card"] [data-slot="card"] .font-semibold {
+  color: #e8f0eb !important;
+}
+
+/* PromptBox code area */
+.terminal-theme [data-slot="card"] [data-slot="card"] pre {
+  background-color: #0b0d0c !important;
+}
+
+/* PromptBox copy button — terminal green accent */
+.terminal-theme [data-slot="card"] [data-slot="card"] [data-slot="button"] {
+  border-color: rgba(57, 232, 117, 0.25) !important;
+  color: #39e875 !important;
+  background-color: transparent !important;
+}
+.terminal-theme [data-slot="card"] [data-slot="card"] [data-slot="button"]:hover {
+  background-color: rgba(57, 232, 117, 0.1) !important;
+  color: #39e875 !important;
+}
+
+/* PromptBox mode toggle buttons — terminal-themed hover */
+.terminal-theme [data-slot="card"] [data-slot="card"] button:not([data-slot="button"]):hover {
+  background-color: rgba(57, 232, 117, 0.05) !important;
+}
+
+/* ===== Terminal: Interactive Diagram Overrides ===== */
+/*
+ * Diagrams use [data-diagram] on their root element.
+ * These rules keep accent colors visible for diagram interactive elements.
+ */
+
+/* Diagram inner cards — transparent bg instead of forced dark green */
+.terminal-theme [data-diagram] [data-slot="card"] {
+  background-color: rgba(20, 24, 22, 0.8) !important;
+  border-color: rgba(57, 232, 117, 0.12) !important;
+}
+
+/* Diagram buttons — let Tailwind accent colors show through */
+.terminal-theme [data-diagram] [data-slot="card"] button,
+.terminal-theme [data-diagram] [data-slot="card"] [data-slot="card"] button {
+  color: inherit !important;
+  border-color: inherit !important;
+  background-color: inherit !important;
+}
+.terminal-theme [data-diagram] [data-slot="card"] button:hover,
+.terminal-theme [data-diagram] [data-slot="card"] [data-slot="card"] button:hover {
+  color: inherit !important;
+  background-color: inherit !important;
+}
+
+/* Diagram label text — preserve foreground colors on buttons */
+.terminal-theme [data-diagram] .text-foreground {
+  color: #e8f0eb !important;
+}
+.terminal-theme [data-diagram] .text-muted-foreground {
+  color: #6b7e72 !important;
+}
+
+/* Diagram font-semibold — let it follow the parent color, not forced white */
+.terminal-theme [data-diagram] [data-slot="card"] .font-semibold,
+.terminal-theme [data-diagram] [data-slot="card"] [data-slot="card"] .font-semibold {
+  color: #e8f0eb !important;
+}
+/* But colored font-semibolds (phase labels, etc.) should keep their color */
+.terminal-theme [data-diagram] .font-semibold.font-mono {
+  color: inherit !important;
+}
+
+/* Accent color classes — ensure visibility on terminal dark bg */
+.terminal-theme [data-diagram] .text-blue-500 { color: #60a5fa !important; }
+.terminal-theme [data-diagram] .text-violet-500 { color: #a78bfa !important; }
+.terminal-theme [data-diagram] .text-amber-500 { color: #fbbf24 !important; }
+.terminal-theme [data-diagram] .text-emerald-500 { color: #34d399 !important; }
+.terminal-theme [data-diagram] .text-emerald-400 { color: #6ee7b7 !important; }
+.terminal-theme [data-diagram] .text-cyan-500 { color: #22d3ee !important; }
+.terminal-theme [data-diagram] .text-rose-500 { color: #fb7185 !important; }
+.terminal-theme [data-diagram] .text-red-400 { color: #f87171 !important; }
+.terminal-theme [data-diagram] .text-red-500 { color: #f87171 !important; }
+.terminal-theme [data-diagram] .text-primary { color: #39e875 !important; }
+
+/* Diagram background accent tints — slightly brighter on terminal bg */
+.terminal-theme [data-diagram] .bg-blue-500\/10 { background-color: rgba(96, 165, 250, 0.12) !important; }
+.terminal-theme [data-diagram] .bg-violet-500\/10 { background-color: rgba(167, 139, 250, 0.12) !important; }
+.terminal-theme [data-diagram] .bg-amber-500\/10 { background-color: rgba(251, 191, 36, 0.12) !important; }
+.terminal-theme [data-diagram] .bg-emerald-500\/10 { background-color: rgba(52, 211, 153, 0.12) !important; }
+.terminal-theme [data-diagram] .bg-cyan-500\/10 { background-color: rgba(34, 211, 238, 0.12) !important; }
+.terminal-theme [data-diagram] .bg-rose-500\/10 { background-color: rgba(251, 113, 133, 0.12) !important; }
+.terminal-theme [data-diagram] .bg-red-500\/10 { background-color: rgba(248, 113, 113, 0.12) !important; }
+
+/* Diagram border accents */
+.terminal-theme [data-diagram] .border-blue-500\/30 { border-color: rgba(96, 165, 250, 0.3) !important; }
+.terminal-theme [data-diagram] .border-violet-500\/30 { border-color: rgba(167, 139, 250, 0.3) !important; }
+.terminal-theme [data-diagram] .border-amber-500\/30 { border-color: rgba(251, 191, 36, 0.3) !important; }
+.terminal-theme [data-diagram] .border-emerald-500\/30 { border-color: rgba(52, 211, 153, 0.3) !important; }
+.terminal-theme [data-diagram] .border-cyan-500\/30 { border-color: rgba(34, 211, 238, 0.3) !important; }
+.terminal-theme [data-diagram] .border-rose-500\/30 { border-color: rgba(251, 113, 133, 0.3) !important; }
+.terminal-theme [data-diagram] .border-red-500\/30 { border-color: rgba(248, 113, 113, 0.3) !important; }
+
+/* Diagram inactive button defaults */
+.terminal-theme [data-diagram] .bg-muted\/30 {
+  background-color: #111413 !important;
+}
+.terminal-theme [data-diagram] .border-border {
+  border-color: rgba(57, 232, 117, 0.12) !important;
+}
+
+/* Diagram key-insight box — green tint */
+.terminal-theme [data-diagram] .bg-primary\/5 {
+  background-color: rgba(57, 232, 117, 0.06) !important;
+}
+.terminal-theme [data-diagram] .border-primary\/20 {
+  border-color: rgba(57, 232, 117, 0.2) !important;
+}
+
+/* Diagram code blocks */
+.terminal-theme [data-diagram] pre {
+  background-color: #0b0d0c !important;
+  border-color: rgba(57, 232, 117, 0.12) !important;
+}
+.terminal-theme [data-diagram] pre code {
+  color: #8fdca0 !important;
+}
+
+/* Diagram inline code */
+.terminal-theme [data-diagram] code:not(pre code) {
+  background-color: rgba(57, 232, 117, 0.08) !important;
+  border-color: rgba(57, 232, 117, 0.15) !important;
+  color: #8fdca0 !important;
+}
+
+/* Diagram rounded-full badges (e.g. step labels, timing pills) */
+.terminal-theme [data-diagram] .rounded-full {
+  color: inherit !important;
+  background-color: inherit !important;
+  border-color: inherit !important;
+}
+
+/* Diagram Card header bars */
+.terminal-theme [data-diagram] [data-slot="card"] > .border-b {
+  background-color: rgba(17, 20, 18, 0.8) !important;
+  border-color: rgba(57, 232, 117, 0.1) !important;
+}
+
+/* Diagram model/tag pills — ensure visible bg + text */
+.terminal-theme [data-diagram] .bg-muted,
+.terminal-theme [data-diagram] .bg-muted\/80 {
+  background-color: rgba(57, 232, 117, 0.08) !important;
+  color: #c4cdc8 !important;
+}
+
+/* ===== Terminal: Card hover ===== */
+.terminal-theme [data-slot="card"]:hover {
+  border-color: rgba(57, 232, 117, 0.25) !important;
+  box-shadow: 0 0 20px rgba(57, 232, 117, 0.04), 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Terminal Animations ===== */
+
+/* Scanline sweep */
+@keyframes terminal-scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Typing cursor blink */
+@keyframes terminal-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.terminal-cursor {
+  animation: terminal-blink 1s step-end infinite;
+}
+
+/* Neon glow pulse for progress bars */
+@keyframes terminal-glow-pulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(57, 232, 117, 0.4), 0 0 12px rgba(57, 232, 117, 0.15); }
+  50% { box-shadow: 0 0 10px rgba(57, 232, 117, 0.6), 0 0 20px rgba(57, 232, 117, 0.25); }
+}
+
+.terminal-progress-glow {
+  animation: terminal-glow-pulse 2s ease-in-out infinite;
+}
+
+/* Card neon hover glow */
+@keyframes terminal-border-glow {
+  0%, 100% { border-color: rgba(57, 232, 117, 0.15); }
+  50% { border-color: rgba(57, 232, 117, 0.35); }
+}
+
+/* Ambient grid overlay */
+.terminal-grid-overlay {
+  background-image:
+    linear-gradient(rgba(57, 232, 117, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 232, 117, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* CRT vignette effect */
+.terminal-vignette {
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.4), inset 0 0 60px rgba(0, 0, 0, 0.2);
+}
+
+/* Glitch text effect for headings */
+@keyframes terminal-glitch {
+  0%, 95%, 100% { transform: none; text-shadow: none; }
+  96% { transform: translate(-2px, 1px); text-shadow: 2px 0 #39e875, -2px 0 #58b5e8; }
+  97% { transform: translate(2px, -1px); text-shadow: -2px 0 #39e875, 2px 0 #58b5e8; }
+  98% { transform: translate(-1px, -1px); text-shadow: 1px 0 #39e875, -1px 0 #58b5e8; }
+}
+
+.terminal-glitch:hover {
+  animation: terminal-glitch 3s ease-in-out infinite;
+}
+
+/* Fade-in-up for step cards (they "print" in) */
+@keyframes terminal-print-in {
+  from { opacity: 0; transform: translateY(20px); filter: blur(2px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+.terminal-steps > div {
+  animation: terminal-print-in 0.5s ease-out both;
+}
+.terminal-steps > div:nth-child(1) { animation-delay: 0.05s; }
+.terminal-steps > div:nth-child(2) { animation-delay: 0.1s; }
+.terminal-steps > div:nth-child(3) { animation-delay: 0.15s; }
+.terminal-steps > div:nth-child(4) { animation-delay: 0.2s; }
+.terminal-steps > div:nth-child(5) { animation-delay: 0.25s; }
+.terminal-steps > div:nth-child(6) { animation-delay: 0.3s; }
+.terminal-steps > div:nth-child(7) { animation-delay: 0.35s; }
+.terminal-steps > div:nth-child(8) { animation-delay: 0.4s; }
+.terminal-steps > div:nth-child(9) { animation-delay: 0.45s; }
+.terminal-steps > div:nth-child(10) { animation-delay: 0.5s; }
+
+/* ===== Terminal: Global element styles ===== */
+/* These override elements OUTSIDE cards too (PromptBox standalone, etc.) */
+
+.terminal-theme pre {
+  border-color: rgba(57, 232, 117, 0.12) !important;
+  background: #0b0d0c !important;
+  box-shadow: 0 0 15px rgba(57, 232, 117, 0.03), inset 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.terminal-theme code {
+  color: #8fdca0 !important;
+}
+
+/* Terminal inline code */
+.terminal-theme code:not(pre code) {
+  border-color: rgba(57, 232, 117, 0.15) !important;
+  background: rgba(57, 232, 117, 0.06) !important;
+}
+
+/* Terminal callouts — semantic amber */
+.terminal-theme .border-amber-500\/20 {
+  border-color: rgba(232, 184, 58, 0.25);
+  background: rgba(232, 184, 58, 0.06);
+  color: #c4cdc8;
+}
+
+/* Terminal links */
+.terminal-theme a[class*="text-primary"] {
+  color: #39e875;
+}
+
+/* Glowing focus for terminal buttons */
+.terminal-theme button:focus-visible {
+  box-shadow: 0 0 0 2px rgba(57, 232, 117, 0.3), 0 0 12px rgba(57, 232, 117, 0.1);
+}
+
+/* Enhanced card hover with neon glow (group pattern from home/summary) */
+.terminal-theme .group:hover > [class*="Card"],
+.terminal-theme .group:hover > [class*="card"],
+.terminal-theme .group:hover > [data-slot="card"] {
+  box-shadow: 0 0 20px rgba(57, 232, 117, 0.06), 0 0 40px rgba(57, 232, 117, 0.03), inset 0 1px 0 rgba(57, 232, 117, 0.1);
+}
+
+/* ===== Terminal: Muted bg opacity fix ===== */
+/*
+ * bg-muted/50 and bg-muted/30 produce colors nearly identical to
+ * the card surface (#141816), making inner containers invisible.
+ * Override them with opaque values that create visible depth.
+ *
+ * Depth ladder:  bg #0b0d0c → muted/50 #0e1110 → muted/30 #111413 → card #141816
+ */
+.terminal-theme .bg-muted\/50 {
+  background-color: #0e1110 !important;
+}
+.terminal-theme .bg-muted\/30 {
+  background-color: #111413 !important;
+}
+
+/* bg-background/50 (PromptBox code area) — make solid on terminal bg */
+.terminal-theme .bg-background\/50 {
+  background-color: #0b0d0c !important;
+}
+
+/* Table rows — visible hover state */
+.terminal-theme [data-slot="card"] tr.hover\:bg-muted\/30:hover,
+.terminal-theme [data-slot="card"] tr:hover {
+  background-color: rgba(57, 232, 117, 0.04) !important;
+}
+
+/* ===== Terminal: Tabs block overrides ===== */
+/* Tabs containers rendered by TabsBlock inside cards */
+.terminal-theme [data-slot="card"] .backdrop-blur-sm {
+  background-color: rgba(14, 17, 16, 0.95) !important;
+  border-color: rgba(57, 232, 117, 0.12) !important;
+}
+
+/* Tab bar row */
+.terminal-theme [data-slot="card"] .backdrop-blur-sm > .flex.gap-1 {
+  background-color: rgba(11, 13, 12, 0.6) !important;
+  border-color: rgba(57, 232, 117, 0.08) !important;
+}
+
+/* Active tab button */
+.terminal-theme [data-slot="card"] .backdrop-blur-sm > .flex.gap-1 button.shadow-sm {
+  background-color: rgba(57, 232, 117, 0.1) !important;
+  color: #e8f0eb !important;
+}
+
+/* Inactive tab button */
+.terminal-theme [data-slot="card"] .backdrop-blur-sm > .flex.gap-1 button:not(.shadow-sm) {
+  color: #6b7e72 !important;
+}
+.terminal-theme [data-slot="card"] .backdrop-blur-sm > .flex.gap-1 button:not(.shadow-sm):hover {
+  color: #c4cdc8 !important;
+}
+
+/* Terminal selection color */
+.terminal-theme ::selection {
+  background: rgba(57, 232, 117, 0.3);
+  color: #e8f0eb;
+}
+
+/* Terminal scrollbar */
+.terminal-theme ::-webkit-scrollbar-track {
+  background: #0b0d0c;
+}
+.terminal-theme ::-webkit-scrollbar-thumb {
+  background: rgba(57, 232, 117, 0.2);
+}
+.terminal-theme ::-webkit-scrollbar-thumb:hover {
+  background: rgba(57, 232, 117, 0.35);
+}

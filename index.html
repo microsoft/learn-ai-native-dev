@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Native Development Tutorial - Build Software Without Code</title>
+        <script>
+            (function () {
+                try {
+                    const stored = localStorage.getItem('theme-preference')
+                    const theme = stored === 'dark' || stored === 'light' ? stored : 'light'
+                    const root = document.documentElement
+                    root.classList.remove('light', 'dark')
+                    root.classList.add(theme)
+                    root.setAttribute('data-appearance', theme)
+                } catch (e) {
+                    document.documentElement.setAttribute('data-appearance', 'light')
+                }
+            })()
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=PT+Serif:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        >
+    <link href="/src/main.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>
