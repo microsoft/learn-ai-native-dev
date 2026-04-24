@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "bash .github/hooks/scripts/gate-deployments.sh",
+        "windows": "powershell -ExecutionPolicy Bypass -File .github/hooks/scripts/gate-deployments.ps1",
+        "timeout": 10
+      }
+    ]
+  }
+}

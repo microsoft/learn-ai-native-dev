@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "bash .github/hooks/scripts/protect-ui-primitives.sh",
+        "windows": "powershell -ExecutionPolicy Bypass -File .github/hooks/scripts/protect-ui-primitives.ps1",
+        "timeout": 10
+      }
+    ]
+  }
+}

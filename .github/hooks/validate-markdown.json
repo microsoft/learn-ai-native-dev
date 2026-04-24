@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "bash .github/hooks/scripts/validate-markdown.sh",
+        "windows": "powershell -ExecutionPolicy Bypass -File .github/hooks/scripts/validate-markdown.ps1",
+        "timeout": 15
+      }
+    ]
+  }
+}
