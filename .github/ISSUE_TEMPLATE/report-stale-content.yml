@@ -1,0 +1,40 @@
+name: 🔄 Report stale content
+description: An outdated tool version, deprecated API, broken link, or anything that no longer reflects the current state of the AI-Native ecosystem.
+title: "[Stale] <what is outdated>"
+labels: ["contribution", "stale-content", "needs-research"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Reporting is enough — `@content-health` and `@researcher` will validate and propose a refresh. Bonus points for evidence (release notes, migration guides).
+  - type: input
+    id: location
+    attributes:
+      label: File or URL
+      placeholder: "e.g., src/content/advanced/module-a-mcp-servers.md, or https://learn-ai-native-dev.example/learn/agentic/module-a"
+    validations:
+      required: true
+  - type: textarea
+    id: outdated
+    attributes:
+      label: What's outdated?
+      description: Quote the current text or describe the broken link / wrong version.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Release notes, migration docs, official deprecation announcements, etc.
+  - type: input
+    id: tool
+    attributes:
+      label: Tool/API affected (if applicable)
+      placeholder: "e.g., GitHub Copilot CLI, Claude Code, MCP spec, VS Code settings"
+  - type: checkboxes
+    id: agreements
+    attributes:
+      label: Agreements
+      options:
+        - label: I have searched existing issues for duplicates.
+          required: true

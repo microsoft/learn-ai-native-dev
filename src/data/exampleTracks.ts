@@ -1,3 +1,8 @@
+import type { ContentStatus } from './paths'
+
+export type ExampleAudience = 'business' | 'developer' | 'nerdy' | 'creative'
+export type ExampleDifficulty = 'starter' | 'spicy'
+
 export interface ExampleTrack {
   id: string
   name: string
@@ -6,6 +11,17 @@ export interface ExampleTrack {
   description: string
   projectName: string
   folderName: string
+  /**
+   * Who this example is for. Drives the audience filter on /examples.
+   * Defaults to 'business' for backward compatibility with existing tracks.
+   */
+  audience?: ExampleAudience
+  /** Optional second filter; defaults to 'starter' */
+  difficulty?: ExampleDifficulty
+  /** Lifecycle status. Existing tracks are 'official'. */
+  status?: ContentStatus
+  /** GitHub handle for community-contributed examples */
+  contributedBy?: string
   // What the user builds
   whatYouBuild: string
   // Sample data description
@@ -43,6 +59,8 @@ export const exampleTracks: ExampleTrack[] = [
     name: 'Deal Health Dashboard',
     icon: '💼',
     industry: 'Sales & Business',
+    audience: 'business',
+    status: 'official',
     description: 'Track sales deals and spot which ones need attention. The classic business dashboard — if you\'ve used a CRM, this will feel familiar.',
     projectName: 'Deal Health Dashboard',
     folderName: 'deal-dashboard',
@@ -115,6 +133,8 @@ R12: Responsive layout
     name: 'Project Milestone Tracker',
     icon: '🎯',
     industry: 'Project Management',
+    audience: 'business',
+    status: 'official',
     description: 'Visualize project progress on a timeline. See what\'s done, what\'s happening now, and what\'s coming up — perfect for status meetings and stakeholder updates.',
     projectName: 'Project Milestone Tracker',
     folderName: 'milestone-tracker',
@@ -188,6 +208,8 @@ R12: Responsive layout
     name: 'Customer Feedback Wall',
     icon: '💬',
     industry: 'Product & Customer Experience',
+    audience: 'business',
+    status: 'official',
     description: 'Organize customer feedback by sentiment. See what customers love, what concerns them, and what needs immediate attention — all on one visual board.',
     projectName: 'Customer Feedback Wall',
     folderName: 'feedback-wall',
@@ -261,6 +283,8 @@ R12: Responsive layout
     name: 'Team Trivia Challenge',
     icon: '🧠',
     industry: 'Training & Team Building',
+    audience: 'business',
+    status: 'official',
     description: 'A fun quiz game for teams. Use it for onboarding, product training, or just Friday afternoon fun. Tracks scores and shows who\'s the trivia champion!',
     projectName: 'Team Trivia Challenge',
     folderName: 'trivia-challenge',
@@ -330,6 +354,243 @@ R12: Responsive layout
       'Click Start — first question appears',
       'Select wrong answer — correct answer highlights green',
       'Complete quiz — see final score and results breakdown'
+    ]
+  },
+  // ───────────────────────────────────────────────────────────────────────
+  // Developer audience
+  // ───────────────────────────────────────────────────────────────────────
+  {
+    id: 'log-analyzer',
+    name: 'CLI Log Analyzer',
+    icon: '🛠',
+    industry: 'Developer Tools',
+    audience: 'developer',
+    status: 'official',
+    description: 'A dashboard for parsing and triaging application logs. See errors, warnings, and traces at a glance — the kind of tool every backend dev wishes they had.',
+    projectName: 'CLI Log Analyzer',
+    folderName: 'log-analyzer',
+    whatYouBuild: 'A log viewer with severity filtering and search',
+    sampleDataDescription: 'sample log entries from a backend service',
+    dataItems: 'log entries',
+    colorCoding: {
+      green: 'info — normal operation, healthy traces',
+      yellow: 'warning — slow requests, retries, deprecations',
+      red: 'error — exceptions, failed requests, crashes'
+    },
+    requirements: {
+      goal: 'A focused log viewer where developers can filter by severity, search messages, and triage issues quickly during incidents.',
+      users: 'Backend engineers, SREs, and on-call developers triaging production issues',
+      whatItShows: [
+        'A scrollable list of log entries newest-first',
+        'Each entry shows: timestamp, severity, service, and message',
+        'Severity is color-coded: Green (info), Yellow (warning), Red (error)',
+        'A summary bar showing counts per severity'
+      ],
+      r1Through6: `R1: Header with title, summary counts (info/warn/error), and search box
+R2: List displaying at least 12 sample log entries with realistic backend data
+R3: Severity rendered as colored pill or left-border accent
+R4: Timestamps shown in HH:MM:SS format with relative time on hover
+R5: Works immediately when opened — no loading or setup required
+R6: Monospace font for log messages; appearance suitable for a developer audience`,
+      r7Through12: `R7: Severity filter
+    - Buttons to filter: All, Info, Warning, Error
+    - Active filter visually highlighted; counts update accordingly
+    - How to verify: Click "Error" — only red entries appear
+
+R8: Free-text search
+    - Search box filters entries by message substring (case-insensitive)
+    - Empty search returns all (subject to severity filter)
+    - How to verify: Type "timeout" — only matching entries remain
+
+R9: Entry detail panel
+    - Clicking a log entry expands to show full payload
+    - Shows: full message, stack trace, request id, user id, raw JSON
+    - How to verify: Click any error — see expanded stack trace
+
+R10: Mark as triaged
+    - Each entry has a "Triaged" toggle
+    - Triaged entries dim visually
+    - State persists in browser storage
+    - How to verify: Triage an error, refresh — it stays dimmed
+
+R11: Reset to defaults
+    - Button to clear triaged state and restore the sample log
+    - How to verify: Triage several, click Reset — all return to active
+
+R12: Responsive layout
+    - Single column on phone; entry detail moves below the list
+    - How to verify: Narrow browser window — layout stacks gracefully`
+    },
+    taskExamples: {
+      tooBig: 'Build the entire log analyzer',
+      rightSize: [
+        'Render a list of log entries with timestamp + message columns',
+        'Add 12 sample entries spanning info, warning, and error severities',
+        'Style severity as colored pills with monospace message text'
+      ]
+    },
+    demoScriptContext: 'an on-call engineer might say when triaging a production incident',
+    verificationExamples: [
+      'Click "Error" filter — only red entries remain',
+      'Search "timeout" — list narrows to matching messages',
+      'Click an error — full stack trace expands below'
+    ]
+  },
+  // ───────────────────────────────────────────────────────────────────────
+  // Nerdy audience
+  // ───────────────────────────────────────────────────────────────────────
+  {
+    id: 'pomodoro-tracker',
+    name: 'Pomodoro Focus Tracker',
+    icon: '🍅',
+    industry: 'Productivity & Hacking',
+    audience: 'nerdy',
+    status: 'official',
+    description: 'Build the focus timer of your dreams. Track sessions, see your streak, and gamify your deep work — perfect Friday-afternoon hack project.',
+    projectName: 'Pomodoro Focus Tracker',
+    folderName: 'pomodoro-tracker',
+    whatYouBuild: 'A focus timer with session history and streak tracking',
+    sampleDataDescription: 'sample focus sessions with durations and tags',
+    dataItems: 'sessions',
+    colorCoding: {
+      green: 'completed — full session finished',
+      yellow: 'in progress — session currently running',
+      red: 'abandoned — session ended early'
+    },
+    requirements: {
+      goal: 'A focus tracker where you can run pomodoro sessions, log what you worked on, and see your daily streak over time.',
+      users: 'Developers, students, and anyone who wants to hack their focus and turn deep work into a game',
+      whatItShows: [
+        'A large countdown timer with start / pause / reset controls',
+        'Today\'s session list with tags and outcomes',
+        'A weekly streak indicator and total focus minutes today',
+        'Sessions are color-coded: Green (completed), Yellow (running), Red (abandoned)'
+      ],
+      r1Through6: `R1: Big circular timer display showing minutes:seconds remaining
+R2: At least 6 sample completed sessions from the past week
+R3: Sessions colored by outcome (green/yellow/red)
+R4: Streak indicator showing consecutive days with at least one completed session
+R5: Works immediately when opened — no setup required
+R6: Playful but focused appearance — feels like a hacker tool, not a corporate app`,
+      r7Through12: `R7: Start a new session
+    - Tag input + duration selector (15 / 25 / 50 minutes)
+    - Clicking Start begins the countdown
+    - How to verify: Pick "25 min", tag "deep work", click Start — timer counts down
+
+R8: Pause / resume / abandon
+    - Pause button freezes timer; Resume continues
+    - Abandon button ends session early and logs it red
+    - How to verify: Start a session, click Abandon — entry appears in red
+
+R9: Auto-complete sessions
+    - When timer reaches zero, session auto-logs as complete (green)
+    - Optional sound / browser notification on completion
+    - How to verify: Set duration to 1 min, wait — entry logs as green
+
+R10: Session history persistence
+    - All sessions saved to browser storage
+    - History survives page refresh
+    - How to verify: Complete a session, refresh — it persists in the list
+
+R11: Reset to defaults
+    - Button to clear history and restore sample sessions
+    - How to verify: Click Reset — history matches initial sample
+
+R12: Keyboard shortcuts
+    - Spacebar = start/pause; R = reset; A = abandon
+    - How to verify: Press Space — timer toggles between running and paused`
+    },
+    taskExamples: {
+      tooBig: 'Build the entire pomodoro tracker',
+      rightSize: [
+        'Create the circular countdown display with minutes:seconds',
+        'Add 6 sample completed sessions to the history list',
+        'Style sessions with outcome colors and tag chips'
+      ]
+    },
+    demoScriptContext: 'someone might say when sharing their focus setup with a friend',
+    verificationExamples: [
+      'Click Start with "25 min" selected — timer begins counting down',
+      'Press Spacebar — timer pauses',
+      'Wait for completion — session logs in green and streak ticks up'
+    ]
+  },
+  // ───────────────────────────────────────────────────────────────────────
+  // Creative audience
+  // ───────────────────────────────────────────────────────────────────────
+  {
+    id: 'palette-forge',
+    name: 'Color Palette Forge',
+    icon: '🎨',
+    industry: 'Design & Creative',
+    audience: 'creative',
+    status: 'official',
+    description: 'A playful palette generator. Save your favorites, rate combinations, and build a swatch library. Designers, this one\'s for you.',
+    projectName: 'Color Palette Forge',
+    folderName: 'palette-forge',
+    whatYouBuild: 'A palette generator with rated swatches and a saved collection',
+    sampleDataDescription: 'sample 5-color palettes with mood tags',
+    dataItems: 'palettes',
+    colorCoding: {
+      green: 'loved — a keeper, saved to favorites',
+      yellow: 'maybe — interesting, worth revisiting',
+      red: 'rejected — discarded from the library'
+    },
+    requirements: {
+      goal: 'A creative tool where designers can generate, rate, and save color palettes — turning swatch hunting into a delightful game.',
+      users: 'Designers, illustrators, and front-end engineers building visual systems',
+      whatItShows: [
+        'A canvas showing the current 5-color palette with hex values',
+        'A library of saved palettes with mood tags',
+        'Each palette has a rating: Loved (green), Maybe (yellow), Rejected (red)',
+        'A "generate" button that produces a new harmonious palette'
+      ],
+      r1Through6: `R1: Hero palette display — 5 large color swatches with hex values below each
+R2: At least 8 sample palettes pre-loaded in the library with mood tags
+R3: Palette rating shown as a colored corner badge
+R4: Hex codes are click-to-copy (with a copied confirmation)
+R5: Works immediately when opened — no setup required
+R6: Beautiful, design-forward appearance — feels like a design tool`,
+      r7Through12: `R7: Generate a new palette
+    - "Generate" button creates a fresh harmonious 5-color palette
+    - Optional mood selector: warm / cool / pastel / vibrant
+    - How to verify: Click Generate — hero palette updates with new colors
+
+R8: Save to library
+    - Save button adds the current hero palette to the library
+    - User can add tags before saving
+    - How to verify: Generate, tag "ocean", Save — palette appears in library
+
+R9: Rate a palette
+    - Each library palette has Love / Maybe / Reject buttons
+    - Rating updates the corner badge color
+    - How to verify: Rate a palette "Love" — green badge appears
+
+R10: Library persistence
+    - Saved palettes and ratings survive page refresh
+    - How to verify: Save a palette, refresh — it remains in the library
+
+R11: Reset library
+    - Button to clear saved palettes and restore the original samples
+    - How to verify: Save several, click Reset — only originals remain
+
+R12: Responsive layout
+    - Hero swatches reflow on phone screens; library becomes a 2-column grid
+    - How to verify: Narrow browser — layout adapts gracefully`
+    },
+    taskExamples: {
+      tooBig: 'Build the entire palette forge',
+      rightSize: [
+        'Build the hero swatch row with 5 colors and hex labels',
+        'Add 8 sample palettes to the library grid',
+        'Style rating badges in the top-right corner of each library card'
+      ]
+    },
+    demoScriptContext: 'a designer might say when curating a brand palette',
+    verificationExamples: [
+      'Click Generate — hero palette refreshes with a new harmony',
+      'Click a hex code — "Copied!" toast appears',
+      'Rate a palette "Love" — green badge appears in the corner'
     ]
   }
 ]

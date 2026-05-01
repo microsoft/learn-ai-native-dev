@@ -12,10 +12,7 @@ Teach developers — from beginners to professionals — how to leverage AI assi
 
 ### Live Deployment
 
-- **Production URL**: https://lemon-mud-0ea992703.4.azurestaticapps.net
-- **Hosting**: Azure Static Web Apps
-- **Resource Group**: `tutorials`
-- **App Name**: `learn-ai-first-dev`
+- **Hosting**: GitHub Pages (deployed via `.github/workflows/deploy-pages.yml` on push to `main`)
 
 ## Tech Stack
 
@@ -31,15 +28,33 @@ Teach developers — from beginners to professionals — how to leverage AI assi
 ```
 src/
 ├── components/       # Reusable UI components
-│   └── ui/          # shadcn/ui components
-├── content/         # Tutorial markdown content
-│   └── tutorial/    # Part 0-8 tutorial files
-├── data/            # Static data and content mappings
-├── hooks/           # Custom React hooks
-├── lib/             # Utility functions
-├── pages/           # Page components (HomePage, LessonPage, SummaryPage)
-└── styles/          # Global styles and theme
+│   ├── ui/          # shadcn/ui components
+│   └── diagrams/    # Tutorial diagrams
+├── content/          # Tutorial markdown content
+│   ├── tutorial/    # Foundation path (Parts 0-8)
+│   ├── advanced/    # Agentic Workflows path (Modules A-E)
+│   ├── terminal/    # Terminal & CLI path (Modules F-H)
+│   └── community/   # Community-contributed paths (each w/ path.json)
+├── data/             # Static data and content mappings
+│   ├── paths.ts            # Official path registry (single source of truth)
+│   ├── communityLoader.ts  # Loads src/content/community/*/path.json
+│   └── exampleTracks.ts    # Foundation example projects
+├── hooks/            # Custom React hooks
+├── lib/              # Utility functions
+├── pages/            # Page components (Home, Catalog, Examples, Lesson, Contribute…)
+└── styles/           # Global styles and theme
 ```
+
+## Information Architecture
+
+- `/` — Landing with three entry points
+- `/learn` — Catalog of all paths (filterable; Official + Community)
+- `/learn/:pathId` — Path home (currently routed into legacy Home pages per path)
+- `/learn/:pathId/:moduleId/:stepId?` — Lesson
+- `/examples` — Pick an example project (audience-filtered)
+- `/contribute` — Contribution hub with three shapes (add-example, fix-content, propose-topic)
+
+Legacy URLs (`/lesson/*`, `/advanced/*`, `/terminal/*`) redirect into `/learn/:pathId/*` for back-compat.
 
 ## Experience Qualities
 
@@ -83,25 +98,14 @@ The design should feel like a modern, premium developer tool—professional but 
 
 ## Deployment
 
-### Manual Deployment to Azure Static Web Apps
+Deployment to GitHub Pages is automated via GitHub Actions (`.github/workflows/deploy-pages.yml`). Every push to `main` builds the site and publishes it.
 
-GitHub Actions hosted runners are disabled for this repository. Deploy manually:
+To preview a build locally:
 
-```powershell
-# 1. Build the project
+```bash
 npm run build
-
-# 2. Get deployment token
-$token = az staticwebapp secrets list --name learn-ai-first-dev --resource-group tutorials --query "properties.apiKey" -o tsv
-
-# 3. Deploy to Azure
-swa deploy ./dist --deployment-token $token --env production
+npm run preview
 ```
-
-### Prerequisites
-
-- Azure CLI (`az login`)
-- SWA CLI (`npm install -g @azure/static-web-apps-cli`)
 
 ## Development Commands
 

@@ -28,7 +28,7 @@ const formatMinutes = (minutes: number) => {
 }
 
 export function LessonPage() {
-  const { lessonId, stepId } = useParams<{ lessonId: string; stepId?: string }>()
+  const { moduleId, stepId } = useParams<{ moduleId: string; stepId?: string }>()
   const navigate = useNavigate()
   const { hasSelectedTrack } = useTrack()
   const [tutorialData, setTutorialData] = useState<Part[]>([])
@@ -51,9 +51,9 @@ export function LessonPage() {
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
-  }, [lessonId, stepId])
+  }, [moduleId, stepId])
 
-  const currentIndex = tutorialData.findIndex((part) => part.id === lessonId)
+  const currentIndex = tutorialData.findIndex((part) => part.id === moduleId)
   const part = tutorialData[currentIndex]
 
   const totalSteps = useMemo(
@@ -139,7 +139,7 @@ export function LessonPage() {
 
   // Redirect to track selection if no track selected
   if (!hasSelectedTrack) {
-    return <Navigate to="/select-track" replace />
+    return <Navigate to="/examples" replace />
   }
 
   if (isLoading) {
@@ -180,7 +180,7 @@ export function LessonPage() {
         totalSteps={totalSteps}
         currentStepNumber={currentStepNumber}
         progressPercent={progressPercent}
-        onPartSelect={(partId) => navigate(`/lesson/${partId}`)}
+        onPartSelect={(partId) => navigate(`/learn/foundation/${partId}`)}
       />
 
       <div className="px-6 py-8 lg:pl-80 lg:pr-12 lg:py-12 transition-[padding] duration-300">
@@ -265,7 +265,7 @@ export function LessonPage() {
           {prevPart ? (
             <Button
               variant="outline"
-              onClick={() => navigate(`/lesson/${prevPart.id}`)}
+              onClick={() => navigate(`/learn/foundation/${prevPart.id}`)}
               className="border-neutral-6 bg-transparent text-foreground hover:bg-neutral-3 hover:text-foreground"
             >
               <ArrowLeft className="mr-2" size={18} weight="bold" />
@@ -281,7 +281,7 @@ export function LessonPage() {
           {nextPart ? (
             <Button
               variant="outline"
-              onClick={() => navigate(`/lesson/${nextPart.id}`)}
+              onClick={() => navigate(`/learn/foundation/${nextPart.id}`)}
               className="border-neutral-6 bg-transparent text-foreground hover:bg-neutral-3 hover:text-foreground"
             >
               <div className="text-right">
@@ -293,7 +293,7 @@ export function LessonPage() {
           ) : (
             <Button
               variant="outline"
-              onClick={() => navigate('/summary')}
+              onClick={() => navigate('/learn/foundation/summary')}
               className="border-neutral-6 bg-transparent text-foreground hover:bg-neutral-3 hover:text-foreground"
             >
               <div className="text-right">
