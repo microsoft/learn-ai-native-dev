@@ -7,6 +7,9 @@ const projectRoot = process.env.PROJECT_ROOT || import.meta.dirname
 
 // https://vite.dev/config/
 export default defineConfig({
+  // When deploying to GitHub Pages as a project site, the app is served
+  // from /<repo>/. Set GITHUB_PAGES=true in CI to enable the subpath.
+  base: process.env.GITHUB_PAGES ? '/learn-ai-native-dev/' : '/',
   plugins: [
     react(),
     tailwindcss(),

@@ -58,7 +58,7 @@ function AppContent() {
 function App() {
   return (
     <TrackProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <ScrollToTop />
         <div className="min-h-screen bg-background">
           <AppContent />
