@@ -1,0 +1,36 @@
+NOTICES AND INFORMATION
+
+This project, learn-ai-native-dev, incorporates components from the projects
+listed below. The original copyright notices and licenses under which
+Microsoft Corporation received such components are set forth below for
+informational purposes. Microsoft reserves all rights not expressly granted
+herein, whether by implication, estoppel, or otherwise.
+
+This project depends on third-party open source software distributed via npm.
+A complete list of dependencies and their versions is maintained in
+`package.json` and `package-lock.json`. The corresponding license texts are
+available in each package's directory under `node_modules/` after running
+`npm install`.
+
+Major third-party components used at runtime include:
+
+  * React (https://react.dev) — MIT License — Copyright (c) Meta Platforms, Inc. and affiliates.
+  * React Router (https://reactrouter.com) — MIT License — Copyright (c) Remix Software Inc.
+  * Vite (https://vitejs.dev) — MIT License — Copyright (c) 2019-present, VoidZero Inc. and Vite contributors.
+  * TypeScript (https://www.typescriptlang.org) — Apache License 2.0 — Copyright (c) Microsoft Corporation.
+  * Tailwind CSS (https://tailwindcss.com) — MIT License — Copyright (c) Tailwind Labs, Inc.
+  * Radix UI (https://www.radix-ui.com) — MIT License — Copyright (c) WorkOS.
+  * shadcn/ui (https://ui.shadcn.com) — MIT License — Copyright (c) shadcn.
+  * Phosphor Icons (https://phosphoricons.com) — MIT License — Copyright (c) Phosphor Icons.
+  * Heroicons (https://heroicons.com) — MIT License — Copyright (c) Tailwind Labs, Inc.
+  * TanStack Query (https://tanstack.com/query) — MIT License — Copyright (c) Tanner Linsley.
+  * lucide-react (https://lucide.dev) — ISC License — Copyright (c) Lucide Contributors.
+  * sonner (https://sonner.emilkowal.ski) — MIT License — Copyright (c) Emil Kowalski.
+  * react-error-boundary — MIT License — Copyright (c) Brian Vaughn.
+
+For the full text of each license and a complete list of transitive
+dependencies, please consult the `node_modules/` directory after install,
+or run `npm ls` to enumerate the dependency tree.
+
+Do not remove this file. If you add a new third-party open source dependency,
+add an entry above and ensure its license is preserved.

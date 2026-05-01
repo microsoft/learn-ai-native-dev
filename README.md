@@ -25,7 +25,8 @@
 <br/>
 
 <a href="https://lemon-mud-0ea992703.4.azurestaticapps.net"><img src="https://img.shields.io/badge/Launch_Tutorial-0a0a0a?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Launch Tutorial"/></a>
-<a href="LICENSE"><img src="https://img.shields.io/badge/MIT_License-0a0a0a?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="MIT License"/></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/Code-MIT-0a0a0a?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="Code: MIT License"/></a>
+<a href="LICENSE-DOCS"><img src="https://img.shields.io/badge/Docs-CC--BY--4.0-0a0a0a?style=for-the-badge&logo=creativecommons&logoColor=white" alt="Docs: CC BY 4.0"/></a>
 <a href="#-contributing"><img src="https://img.shields.io/badge/Contribute-0a0a0a?style=for-the-badge&logo=github&logoColor=white" alt="Contribute"/></a>
 <a href="https://github.com/microsoft/learn-ai-native-dev/pulls"><img src="https://img.shields.io/badge/PRs_Welcome-0a0a0a?style=for-the-badge&logo=gitpullrequest&logoColor=white" alt="PRs Welcome"/></a>
 
@@ -295,7 +296,30 @@ Have an idea? [Open an issue](https://github.com/microsoft/learn-ai-native-dev/i
 
 ## 📜 License
 
-This project is licensed under the [MIT License](LICENSE) — © Microsoft Corporation.
+This project uses a **dual-license** model:
+
+- **Code** (everything that is not documentation — for example, files under `src/components/`, `src/pages/`, `src/hooks/`, `src/lib/`, `src/data/`, configuration, and build scripts) is licensed under the [MIT License](LICENSE).
+- **Documentation and tutorial content** (including all files under `src/content/` and Markdown files outside of code-only directories) is licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE-DOCS).
+
+© Microsoft Corporation. Third-party open source attributions are listed in [NOTICE](NOTICE).
+
+---
+
+## 🔐 Security
+
+To report a security vulnerability, please **do not** open a public GitHub issue. Follow the disclosure process described in [SECURITY.md](SECURITY.md) and at [https://aka.ms/SECURITY.md](https://aka.ms/SECURITY.md).
+
+---
+
+## 📣 Code of Conduct
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments. The local copy is in [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+
+---
+
+## ™️ Trademarks
+
+This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft trademarks or logos is subject to and must follow [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general). Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship. Any use of third-party trademarks or logos is subject to those third parties' policies.
 
 ---
 
@@ -316,7 +340,7 @@ If this project helps you build better with AI, consider giving it a star. It he
   ─────────────────────────────────────────────────────────────
 ```
 
-<sub>Built by the community, for the community · © Microsoft Corporation · MIT License</sub>
+<sub>Built by the community, for the community · © Microsoft Corporation · Code: MIT · Docs: CC BY 4.0</sub>
 
 <br/>
 
