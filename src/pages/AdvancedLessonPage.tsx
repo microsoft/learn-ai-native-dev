@@ -147,7 +147,7 @@ export function AdvancedLessonPage() {
             return (
               <button
                 key={mod.id}
-                onClick={() => navigate(`/advanced/module/${mod.id}`)}
+                onClick={() => navigate(`/learn/agentic/${mod.id}`)}
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-left transition-colors ${
                   isActive
                     ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400'
@@ -167,7 +167,7 @@ export function AdvancedLessonPage() {
           })}
           
           <Link
-            to="/advanced/summary"
+            to="/learn/agentic/summary"
             className="flex items-center gap-3 rounded-lg px-3 py-2 text-left text-muted-foreground hover:bg-neutral-3 hover:text-foreground transition-colors mt-2"
           >
             <div className="flex h-7 w-7 items-center justify-center rounded-full border border-neutral-6 bg-neutral-3 text-xs font-bold">
@@ -272,7 +272,7 @@ export function AdvancedLessonPage() {
             {prevModule ? (
               <Button
                 variant="outline"
-                onClick={() => navigate(`/advanced/module/${prevModule.id}`)}
+                onClick={() => navigate(`/learn/agentic/${prevModule.id}`)}
                 className="border-neutral-6 bg-transparent text-foreground hover:bg-neutral-3 hover:text-foreground"
               >
                 <ArrowLeft className="mr-2" size={18} weight="bold" />
@@ -298,7 +298,7 @@ export function AdvancedLessonPage() {
             {nextModule ? (
               <Button
                 variant="outline"
-                onClick={() => navigate(`/advanced/module/${nextModule.id}`)}
+                onClick={() => navigate(`/learn/agentic/${nextModule.id}`)}
                 className="border-neutral-6 bg-transparent text-foreground hover:bg-neutral-3 hover:text-foreground"
               >
                 <div className="text-right">
@@ -310,7 +310,7 @@ export function AdvancedLessonPage() {
             ) : (
               <Button
                 variant="outline"
-                onClick={() => navigate('/advanced/summary')}
+                onClick={() => navigate('/learn/agentic/summary')}
                 className="border-neutral-6 bg-transparent text-foreground hover:bg-neutral-3 hover:text-foreground"
               >
                 <div className="text-right">

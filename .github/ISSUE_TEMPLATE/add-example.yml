@@ -1,0 +1,91 @@
+name: 📦 Add an example project
+description: Add a new project example for any audience (business / developer / nerdy / creative). Pure data — no React or markdown changes needed.
+title: "[Example] <project name>"
+labels: ["contribution", "example", "good first issue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for adding an example! This issue maps directly to a `ExampleTrack` entry in `src/data/exampleTracks.ts`.
+
+        **Tip:** After filling this out, run `/add-example` (or `@track-generator`) in your editor and paste the field values — the agent will scaffold the entry for you.
+  - type: input
+    id: name
+    attributes:
+      label: Project name
+      placeholder: "e.g., CLI Log Analyzer"
+    validations:
+      required: true
+  - type: dropdown
+    id: audience
+    attributes:
+      label: Audience
+      description: Which audience is this example primarily for?
+      options:
+        - business
+        - developer
+        - nerdy
+        - creative
+    validations:
+      required: true
+  - type: input
+    id: icon
+    attributes:
+      label: Emoji icon
+      placeholder: "🛠"
+    validations:
+      required: true
+  - type: input
+    id: industry
+    attributes:
+      label: Industry / category label
+      placeholder: "e.g., Developer Tools & DevOps"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description (1–2 sentences)
+      placeholder: A short pitch the user will see on the Examples page.
+    validations:
+      required: true
+  - type: input
+    id: dataItems
+    attributes:
+      label: Plural noun for the data items
+      placeholder: "e.g., logs, palettes, sessions"
+    validations:
+      required: true
+  - type: textarea
+    id: colorCoding
+    attributes:
+      label: Green / Yellow / Red meaning
+      description: One short phrase per color — drives the visual language used in lessons.
+      placeholder: |
+        green: ...
+        yellow: ...
+        red: ...
+    validations:
+      required: true
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: Difficulty
+      options:
+        - starter
+        - spicy
+      default: 0
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else?
+      description: Sample data ideas, references, screenshots, or open questions.
+  - type: checkboxes
+    id: agreements
+    attributes:
+      label: Agreements
+      options:
+        - label: I have read [CONTRIBUTING.md](../blob/main/.github/CONTRIBUTING.md).
+          required: true
+        - label: I understand my contribution will be licensed under the project's dual license (MIT for code, CC BY 4.0 for content).
+          required: true

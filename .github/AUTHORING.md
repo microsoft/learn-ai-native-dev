@@ -2,6 +2,22 @@
 
 Quick reference for creating and maintaining AI Native tutorials.
 
+> Public contributors: start at [CONTRIBUTING.md](CONTRIBUTING.md). This file is the deeper agent/skill cheat-sheet for maintainers.
+
+## Contribution Shape → Routing
+
+The three contribution shapes from [CONTRIBUTING.md](CONTRIBUTING.md) map directly to agents and slash-prompts:
+
+| Shape | Issue template | Slash-prompt | Driving agent / skill |
+|---|---|---|---|
+| 📦 Add an example | [`add-example.yml`](ISSUE_TEMPLATE/add-example.yml) | `/add-example` | [`track-generator`](skills/track-generator/SKILL.md) |
+| ✏️ Improve content | [`improve-content.yml`](ISSUE_TEMPLATE/improve-content.yml) | `/fix-content` | [`@editor`](agents/editor.agent.md) |
+| 🔄 Refresh stale content | [`report-stale-content.yml`](ISSUE_TEMPLATE/report-stale-content.yml) | `/refresh-content` | [`@content-health`](agents/content-health.agent.md) → [`@researcher`](agents/researcher.agent.md) |
+| 📚 New module | [`propose-topic.yml`](ISSUE_TEMPLATE/propose-topic.yml) | `/propose-topic` | [`@orchestrator`](agents/orchestrator.agent.md) |
+| 📚 New community path | [`propose-topic.yml`](ISSUE_TEMPLATE/propose-topic.yml) | `/propose-topic` | [`@curriculum-designer`](agents/curriculum-designer.agent.md) → [`@orchestrator`](agents/orchestrator.agent.md) |
+
+Pre-ship gate (Medium/Larger only): [`@reviewer`](agents/reviewer.agent.md).
+
 ## When to Use What?
 
 ```
@@ -44,7 +60,6 @@ You're doing a specific, repeatable micro-task with clear input/output:
 | `content-rendering-debugger` | Debugging rendering issues |
 | `content-track-scaffolder` | Scaffolding a new learning path |
 | `diagram-scaffolder` | Creating diagram components |
-| `azure-deploy` | Deploying to production |
 
 ### Use an **Agent** when...
 
@@ -114,6 +129,13 @@ The reviewer executes: content structure QA → track wiring → build → acces
 |--------------|----------|
 | Agent definitions | `.github/agents/` |
 | Skills | `.github/skills/` |
-| Tutorial markdown | `src/content/tutorial/` |
+| Slash-prompts | `.github/prompts/` |
+| Issue templates | `.github/ISSUE_TEMPLATE/` |
+| Path registry (official paths) | `src/data/paths.ts` |
+| Community paths | `src/content/community/<id>/path.json` + markdown |
+| Tutorial markdown — Foundation | `src/content/tutorial/` |
+| Tutorial markdown — Agentic | `src/content/advanced/` |
+| Tutorial markdown — Terminal | `src/content/terminal/` |
 | React components | `src/components/` |
 | Example tracks | `src/data/exampleTracks.ts` |
+| Lifecycle / status policy | `.github/CONTENT_LIFECYCLE.md` |

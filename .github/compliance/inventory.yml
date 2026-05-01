@@ -1,5 +1,0 @@
-inventory:
-- source: DirectOwners
-  items:
-  - id: vahidrostami@microsoft.com
-  isProduction: false

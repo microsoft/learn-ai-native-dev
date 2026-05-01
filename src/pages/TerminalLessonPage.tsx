@@ -128,7 +128,7 @@ export function TerminalLessonPage() {
             return (
               <button
                 key={mod.id}
-                onClick={() => navigate(`/terminal/module/${mod.id}`)}
+                onClick={() => navigate(`/learn/terminal/${mod.id}`)}
                 className={`flex items-center gap-3 rounded px-3 py-2 text-left transition-colors font-mono ${
                   isActive
                     ? 'bg-[#39e875]/10 text-[#39e875] border border-[#39e875]/20'
@@ -148,7 +148,7 @@ export function TerminalLessonPage() {
           })}
 
           <Link
-            to="/terminal/summary"
+            to="/learn/terminal/summary"
             className="flex items-center gap-3 rounded px-3 py-2 text-left text-[#6b8a75] hover:bg-[#39e875]/5 hover:text-[#a3c4b0] transition-colors mt-2 font-mono border border-transparent"
           >
             <div className="flex h-7 w-7 items-center justify-center rounded border border-[#39e875]/10 bg-[#39e875]/5 text-xs font-bold text-[#5a8f6a]">
@@ -253,7 +253,7 @@ export function TerminalLessonPage() {
             {prevModule ? (
               <Button
                 variant="outline"
-                onClick={() => navigate(`/terminal/module/${prevModule.id}`)}
+                onClick={() => navigate(`/learn/terminal/${prevModule.id}`)}
                 className="border-[#39e875]/15 bg-transparent text-[#e8f0eb] hover:bg-[#39e875]/10 hover:text-[#e8f0eb] font-mono"
               >
                 <ArrowLeft className="mr-2" size={18} weight="bold" />
@@ -279,7 +279,7 @@ export function TerminalLessonPage() {
             {nextModule ? (
               <Button
                 variant="outline"
-                onClick={() => navigate(`/terminal/module/${nextModule.id}`)}
+                onClick={() => navigate(`/learn/terminal/${nextModule.id}`)}
                 className="border-[#39e875]/15 bg-transparent text-[#e8f0eb] hover:bg-[#39e875]/10 hover:text-[#e8f0eb] font-mono"
               >
                 <div className="text-right">
@@ -291,7 +291,7 @@ export function TerminalLessonPage() {
             ) : (
               <Button
                 variant="outline"
-                onClick={() => navigate('/terminal/summary')}
+                onClick={() => navigate('/learn/terminal/summary')}
                 className="border-[#39e875]/15 bg-transparent text-[#e8f0eb] hover:bg-[#39e875]/10 hover:text-[#e8f0eb] font-mono"
               >
                 <div className="text-right">

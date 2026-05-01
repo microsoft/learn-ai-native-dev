@@ -212,7 +212,7 @@ export function TerminalSummaryPage() {
 
         {/* Navigation Footer */}
         <footer className="mt-16 flex items-center justify-between border-t border-[#39e875]/10 pt-8">
-          <Link to="/terminal/module/module-h">
+          <Link to="/learn/terminal/module-h">
             <Button
               variant="outline"
               className="border-[#39e875]/15 bg-transparent text-[#e8f0eb] hover:bg-[#39e875]/10 hover:text-[#e8f0eb] font-mono"
