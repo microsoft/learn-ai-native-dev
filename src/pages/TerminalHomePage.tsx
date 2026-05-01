@@ -123,7 +123,7 @@ export function TerminalHomePage() {
                 return (
                   <Link
                     key={module.id}
-                    to={`/terminal/module/${module.id}`}
+                    to={`/learn/terminal/${module.id}`}
                     className="group block"
                   >
                     <Card className="border-[#39e875]/10 bg-[#141816]/90 p-5 transition-all duration-300 hover:border-[#39e875]/30 hover:bg-[#39e875]/5 hover:shadow-[0_0_30px_rgba(57,232,117,0.08),0_0_60px_rgba(57,232,117,0.03)] backdrop-blur-sm">
@@ -158,7 +158,7 @@ export function TerminalHomePage() {
               })}
 
               {/* Summary Link */}
-              <Link to="/terminal/summary" className="group block">
+              <Link to="/learn/terminal/summary" className="group block">
                 <Card className="border-[#39e875]/10 bg-[#141816]/90 p-5 transition-all hover:border-[#39e875]/30 hover:bg-[#39e875]/5 backdrop-blur-sm">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
@@ -231,7 +231,7 @@ export function TerminalHomePage() {
         {/* Start Button */}
         <div className="text-center mb-12">
           {terminalData.length > 0 && (
-            <Link to={`/terminal/module/${terminalData[0].id}`}>
+            <Link to={`/learn/terminal/${terminalData[0].id}`}>
               <Button size="lg" className="text-base px-8 py-6 bg-[#30c060] hover:bg-[#39e875] text-black font-mono font-bold tracking-wider border border-[#39e875]/30 shadow-[0_0_20px_rgba(57,232,117,0.2),0_0_40px_rgba(57,232,117,0.1)] hover:shadow-[0_0_30px_rgba(57,232,117,0.35),0_0_60px_rgba(57,232,117,0.15)] transition-all duration-300">
                 ./start --module F
                 <ArrowRight className="ml-2" size={20} weight="bold" />
@@ -240,11 +240,7 @@ export function TerminalHomePage() {
           )}
         </div>
 
-        {/* Footer */}
-        <footer className="text-center">
-          <div className="mx-auto mb-6 h-px w-32 bg-gradient-to-r from-transparent via-[#39e875]/30 to-transparent" />
-          <p className="text-xs text-[#445a4a] font-mono">Created by Vahid Rostami • 11057475+Vahidrostami@users.noreply.github.com</p>
-        </footer>
+
       </div>
     </div>
   )

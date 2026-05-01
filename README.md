@@ -24,7 +24,7 @@
 
 <br/>
 
-<a href="https://lemon-mud-0ea992703.4.azurestaticapps.net"><img src="https://img.shields.io/badge/Launch_Tutorial-0a0a0a?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Launch Tutorial"/></a>
+<a href="https://microsoft.github.io/learn-ai-native-dev/"><img src="https://img.shields.io/badge/Launch_Tutorial-0a0a0a?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Launch Tutorial"/></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/Code-MIT-0a0a0a?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="Code: MIT License"/></a>
 <a href="LICENSE-DOCS"><img src="https://img.shields.io/badge/Docs-CC--BY--4.0-0a0a0a?style=for-the-badge&logo=creativecommons&logoColor=white" alt="Docs: CC BY 4.0"/></a>
 <a href="#-contributing"><img src="https://img.shields.io/badge/Contribute-0a0a0a?style=for-the-badge&logo=github&logoColor=white" alt="Contribute"/></a>
@@ -212,7 +212,6 @@ Defined in `.github/skills/`. These activate automatically when agents need spec
 | `version-checker` | Validates tool/API version currency |
 | `accessibility-checker` | Reviews readability, jargon, inclusive language |
 | `content-rendering-debugger` | Diagnoses markdown rendering pipeline issues |
-| `azure-deploy` | Handles production deployment to Azure Static Web Apps |
 
 ### Prompts — Slash Commands
 

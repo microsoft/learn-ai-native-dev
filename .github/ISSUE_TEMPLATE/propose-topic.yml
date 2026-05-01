@@ -1,0 +1,89 @@
+name: 📚 Propose a new topic
+description: A new module in an existing path, or a brand-new community path on a fresh subject. Open this BEFORE writing content so we can align on scope.
+title: "[Topic] <short title>"
+labels: ["contribution", "proposal", "needs-curriculum-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please open this issue **before** writing the content. `@curriculum-designer` will help shape the proposal in this thread, then `@orchestrator` scaffolds the files.
+
+        New paths land as `status: community` and ship right away — no curriculum gatekeeping. Promotion to `official` is a separate step.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What are you proposing?
+      options:
+        - New module in an existing path
+        - Brand-new community path
+    validations:
+      required: true
+  - type: dropdown
+    id: targetPath
+    attributes:
+      label: Target path (if adding a module)
+      options:
+        - foundation
+        - agentic
+        - terminal
+        - (proposing a new path — leave blank)
+  - type: input
+    id: title
+    attributes:
+      label: Topic title
+      placeholder: "e.g., Spec-Driven Development with AI"
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: One-paragraph summary
+    validations:
+      required: true
+  - type: textarea
+    id: objectives
+    attributes:
+      label: Learning objectives
+      description: 3–6 bullets — what will the reader be able to do afterwards?
+      placeholder: |
+        - Understand X
+        - Be able to do Y
+        - Apply Z to their own project
+    validations:
+      required: true
+  - type: dropdown
+    id: level
+    attributes:
+      label: Audience level
+      options:
+        - beginner
+        - intermediate
+        - advanced
+    validations:
+      required: true
+  - type: input
+    id: estimatedMinutes
+    attributes:
+      label: Estimated time to complete (minutes)
+      placeholder: "e.g., 45"
+  - type: textarea
+    id: outline
+    attributes:
+      label: Rough outline (optional)
+      description: Module/step breakdown if you have one.
+  - type: input
+    id: contributedBy
+    attributes:
+      label: Your GitHub handle (for community attribution)
+      placeholder: "@yourhandle"
+  - type: checkboxes
+    id: agreements
+    attributes:
+      label: Agreements
+      options:
+        - label: I have read [CONTRIBUTING.md](../blob/main/.github/CONTRIBUTING.md) and [CONTENT_LIFECYCLE.md](../blob/main/.github/CONTENT_LIFECYCLE.md).
+          required: true
+        - label: I understand new paths land as `community` status and may be promoted to `official` later by maintainers.
+          required: true
+        - label: I agree to license my contribution under the project's dual license (MIT for code, CC BY 4.0 for content).
+          required: true

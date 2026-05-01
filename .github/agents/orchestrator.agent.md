@@ -136,7 +136,6 @@ Agents should invoke these skills for automated, repeatable tasks:
 | `prompt-writer` | Write correctly formatted prompt blocks |
 | `exercise-scaffolder` | Generate exercise templates |
 | `track-generator` | Create new example track data |
-| `azure-deploy` | Deploy to production |
 
 ## Escalation Patterns
 

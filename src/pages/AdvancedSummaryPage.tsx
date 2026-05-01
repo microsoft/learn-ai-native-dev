@@ -177,7 +177,7 @@ export function AdvancedSummaryPage() {
 
         {/* Navigation Footer */}
         <footer className="mt-16 flex items-center justify-between border-t border-amber-500/10 pt-8">
-          <Link to="/advanced/module/module-e">
+          <Link to="/learn/agentic/module-e">
             <Button
               variant="outline"
               className="border-amber-500/20 bg-transparent text-foreground hover:bg-amber-500/5 hover:text-foreground"

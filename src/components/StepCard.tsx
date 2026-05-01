@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Card } from '@/components/ui/card'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { PromptBox } from './PromptBox'
+import { CodeBlock } from './CodeBlock'
 import { 
   FileHierarchyDiagram,
   MCPArchitectureDiagram,
@@ -621,35 +622,29 @@ export function StepCard({ step, partNumber, index, isAdvanced = false }: StepCa
     switch (block.type) {
       case 'code':
         return (
-          <div key={idx} className="relative my-5">
-            {block.language && (
-              <div className="absolute right-3 top-2 z-10 rounded bg-muted px-2 py-0.5 text-[11px] font-mono font-medium text-muted-foreground">
-                {block.language}
-              </div>
-            )}
-            <pre className="overflow-x-auto rounded-lg border border-border bg-muted/50 p-4 text-[15px] shadow-sm">
-              <code className="text-foreground font-mono leading-[1.6]">{block.content}</code>
-            </pre>
-            <div className="pointer-events-none absolute inset-y-px right-px w-6 rounded-r-lg bg-gradient-to-l from-muted/80 to-transparent md:hidden" aria-hidden="true" />
-          </div>
+          <CodeBlock
+            key={idx}
+            code={block.content}
+            language={block.language}
+          />
         )
 
       case 'heading':
         return (
           <h4
             key={idx}
-            className="mb-3 mt-6 font-heading text-lg font-bold text-foreground tracking-tight md:text-xl"
+            className="mb-2 mt-5 font-heading text-base font-bold text-foreground tracking-tight md:text-lg"
             dangerouslySetInnerHTML={{ __html: parseMarkdown(block.content) }}
           />
         )
 
       case 'numbered-list':
         return (
-          <ol key={idx} className="my-4 ml-6 list-decimal space-y-2 marker:font-semibold marker:text-primary">
+          <ol key={idx} className="my-3 ml-5 list-decimal space-y-1.5 marker:font-semibold marker:text-[var(--accent-color)]">
             {block.items?.map((item, itemIdx) => (
               <li
                 key={itemIdx}
-                className="text-base leading-[1.7] text-foreground pl-2"
+                className="text-[15px] leading-[1.65] text-foreground pl-1.5"
                 dangerouslySetInnerHTML={{ __html: parseMarkdown(item) }}
               />
             ))}
@@ -658,11 +653,11 @@ export function StepCard({ step, partNumber, index, isAdvanced = false }: StepCa
 
       case 'bullet-list':
         return (
-          <ul key={idx} className="my-4 ml-6 list-disc space-y-2 marker:text-primary">
+          <ul key={idx} className="my-3 ml-5 list-disc space-y-1.5 marker:text-[var(--accent-color)]">
             {block.items?.map((item, itemIdx) => (
               <li
                 key={itemIdx}
-                className="text-base leading-[1.7] text-foreground pl-2"
+                className="text-[15px] leading-[1.65] text-foreground pl-1.5"
                 dangerouslySetInnerHTML={{ __html: parseMarkdown(item) }}
               />
             ))}
@@ -839,7 +834,7 @@ export function StepCard({ step, partNumber, index, isAdvanced = false }: StepCa
         return (
           <p
             key={idx}
-            className="my-4 text-base leading-[1.7] text-foreground"
+            className="my-3 text-[15px] leading-[1.65] text-foreground"
             dangerouslySetInnerHTML={{ __html: parseMarkdown(block.content) }}
           />
         )
@@ -848,24 +843,30 @@ export function StepCard({ step, partNumber, index, isAdvanced = false }: StepCa
 
   return (
     <div id={step.id} className="scroll-mt-28">
-      <Card className="overflow-hidden border border-border bg-card shadow-sm transition-all hover:border-primary/20 hover:shadow-md">
-        {/* Step Header */}
-        <div className="border-b border-border bg-muted/30 px-6 py-4 md:px-8">
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center justify-center rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-muted-foreground">
-              Step {index + 1}
-            </span>
-            <span className="text-[11px] text-muted-foreground">
-              {Math.max(1, Math.round(content.split(/\s+/).length / 200))} min read
+      <Card className="group/step relative overflow-hidden border-border/80 py-0 transition-all duration-300 hover:border-[var(--accent-edge)] hover:shadow-[var(--elev-2)]">
+        {/* Step Header — slim, with numbered badge */}
+        <div className="relative flex items-center gap-3 border-b border-border/70 bg-gradient-to-b from-muted/40 to-muted/10 px-5 py-3 md:px-6">
+          <div className="stroke-conic flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border/80 bg-[var(--accent-soft)]" data-accent="electric">
+            <span className="numeric font-heading text-xs font-bold text-[var(--accent-color)]">
+              {String(index + 1).padStart(2, '0')}
             </span>
           </div>
-          <h3 className="mt-3 font-heading text-xl font-bold tracking-tight text-foreground md:text-2xl">
-            {step.title}
-          </h3>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
+              <span>Step {index + 1}</span>
+              <span className="text-border">·</span>
+              <span className="numeric">
+                {Math.max(1, Math.round(content.split(/\s+/).length / 200))} min read
+              </span>
+            </div>
+            <h3 className="mt-0.5 font-heading text-base font-bold tracking-tight text-foreground md:text-lg">
+              {step.title}
+            </h3>
+          </div>
         </div>
 
         {/* Step Content */}
-        <div className="px-6 py-6 md:px-8 md:py-8">
+        <div className="px-5 py-5 md:px-6 md:py-6">
           <div className="mx-auto max-w-2xl">
             {blocks.map((block, idx) => renderBlock(block, idx))}
           </div>

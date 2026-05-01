@@ -12,7 +12,7 @@ export function TrackSelector() {
 
   const handleSelectTrack = (trackId: string) => {
     setSelectedTrack(trackId)
-    navigate('/lesson/getting-started/what-youll-learn')
+    navigate('/learn/foundation/getting-started/what-youll-learn')
   }
 
   return (
