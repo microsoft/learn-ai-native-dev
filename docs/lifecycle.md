@@ -20,7 +20,7 @@ disagree, that file wins — and the Docs Auditor will flag the drift.
   [`src/data/paths.ts`](../src/data/paths.ts) (official) or in
   `src/content/community/<id>/path.json` (community).
 - **Examples:** `status` field in
-  [`src/data/exampleTracks.ts`](../src/data/exampleTracks.ts).
+  [`src/data/projectShapes.ts`](../src/data/projectShapes.ts).
 
 ## Default landing status
 
