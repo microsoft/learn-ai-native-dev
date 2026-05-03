@@ -122,7 +122,7 @@ function WorkflowColumn({
         )}
         <div>
           <div className="font-semibold text-sm text-foreground">
-            {isLocal ? 'VS Code Agents' : 'GitHub Coding Agent'}
+            {isLocal ? 'VS Code Agents' : 'Copilot Coding Agent'}
           </div>
           <div className="text-xs text-muted-foreground">
             {isLocal ? 'Real-time collaboration' : 'Async delegation'}
@@ -178,7 +178,7 @@ export function WorkflowComparisonDiagram() {
     <div
       className="my-6 space-y-4"
       role="figure"
-      aria-label="Workflow comparison diagram contrasting VS Code Agents (real-time collaboration with instant feedback) versus GitHub Coding Agent (async delegation via issues and PRs). Click to compare workflows."
+      aria-label="Workflow comparison diagram contrasting VS Code Agents (real-time collaboration with instant feedback) versus Copilot Coding Agent (async delegation via issues and PRs). Click to compare workflows."
     >
       {/* Main Comparison */}
       <Card className="p-4 bg-muted/30 border-border">

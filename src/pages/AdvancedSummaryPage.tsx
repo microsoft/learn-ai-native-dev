@@ -165,7 +165,7 @@ export function AdvancedSummaryPage() {
                 <h4 className="font-semibold text-foreground mb-3">Advanced Track</h4>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li>• MCP servers (fetch, quotes, weather, github)</li>
-                  <li>• GitHub Coding Agent workflow</li>
+                  <li>• Copilot coding agent workflow</li>
                   <li>• Review orchestrator + specialists</li>
                   <li>• Test generation skill</li>
                   <li>• DevDash CLI with live data</li>

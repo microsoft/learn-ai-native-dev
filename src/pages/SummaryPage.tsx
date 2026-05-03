@@ -21,7 +21,7 @@ export function SummaryPage() {
   // Redirect to track selection if no track selected
   useEffect(() => {
     if (!hasSelectedTrack) {
-      navigate('/examples', { replace: true })
+      navigate('/projects', { replace: true })
     }
   }, [hasSelectedTrack, navigate])
 

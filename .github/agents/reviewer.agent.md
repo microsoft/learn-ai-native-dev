@@ -6,21 +6,17 @@ infer: true
 tools:
   ['execute/runInTerminal', 'read/readFile', 'search', 'web/githubRepo', 'agent']
 handoffs:
-  - label: Fix Code
-    agent: developer
-    prompt: "Fix issues found during code review"
-    send: false
-  - label: Clarify Content
-    agent: technical-writer
-    prompt: "Revise content based on review feedback"
+  - label: Apply Fixes
+    agent: author
+    prompt: "Apply the fixes found during review"
     send: false
   - label: Update Research
     agent: researcher
     prompt: "Re-verify technical accuracy concerns"
     send: false
-  - label: Fix Design
-    agent: ux-designer
-    prompt: "Address visual or UX issues found"
+  - label: Sync Docs
+    agent: docs-auditor
+    prompt: "Check whether docs/ needs to be updated to match these changes"
     send: false
 ---
 

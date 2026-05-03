@@ -32,11 +32,11 @@ export function FoundationHomePage() {
   const firstPart = parts[0]
   const startHref = firstPart
     ? `/learn/foundation/${firstPart.id}${firstPart.steps[0] ? `/${firstPart.steps[0].id}` : ''}`
-    : '/examples'
+    : '/projects'
 
   const handleStart = () => {
     if (!hasSelectedTrack) {
-      navigate('/examples')
+      navigate('/projects')
     } else {
       navigate(startHref)
     }
@@ -102,7 +102,7 @@ export function FoundationHomePage() {
                 </Button>
                 <Button
                   variant="outline"
-                  onClick={() => navigate('/examples')}
+                  onClick={() => navigate('/projects')}
                 >
                   Switch project
                 </Button>
@@ -119,7 +119,7 @@ export function FoundationHomePage() {
                   Todo app, recipe finder, fitness tracker, and more.
                 </p>
               </div>
-              <Button onClick={() => navigate('/examples')} className="gap-2">
+              <Button onClick={() => navigate('/projects')} className="gap-2">
                 <Lightning size={14} weight="fill" />
                 Choose an example
                 <ArrowRight size={13} weight="bold" />

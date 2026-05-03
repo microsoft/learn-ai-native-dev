@@ -30,11 +30,13 @@ A track consists of 7 coordinated file groups:
 
 ## Existing Tracks Reference
 
-| Track | Route Prefix | Content Dir | Data Module | Step Prefix | Modules |
+| Track | Route | Content Dir | Data Module | Step Prefix | Modules |
 |---|---|---|---|---|---|
-| Foundation | `/lesson/` | `tutorial/` | `tutorialContent.ts` | `Step N:` | Parts 0-8 |
-| Advanced | `/advanced/` | `advanced/` | `advancedContent.ts` | `Step A1:` | Modules A-E |
-| Terminal | `/terminal/` | `terminal/` | `terminalContent.ts` | `Step F1:` | Modules F-H |
+| Foundation | `/learn/foundation/…` | `tutorial/` | `tutorialContent.ts` | `Step N:` | Parts 0-8 |
+| Advanced | `/learn/agentic/…` | `advanced/` | `advancedContent.ts` | `Step A1:` | Modules A-E |
+| Terminal | `/learn/terminal/…` | `terminal/` | `terminalContent.ts` | `Step F1:` | Modules F-H |
+
+> Legacy routes (`/lesson/`, `/advanced/`, `/terminal/`) still work via redirects in `App.tsx` but should not be used in new code.
 
 ### Key Differences Between Tracks
 
@@ -233,12 +235,14 @@ const <Track>HomePage = lazy(() => import('@/pages/<Track>HomePage').then(m => (
 const <Track>LessonPage = lazy(() => import('@/pages/<Track>LessonPage').then(m => ({ default: m.<Track>LessonPage })))
 const <Track>SummaryPage = lazy(() => import('@/pages/<Track>SummaryPage').then(m => ({ default: m.<Track>SummaryPage })))
 
-// In Routes:
-<Route path="/<track>" element={<<Track>HomePage />} />
-<Route path="/<track>/module/:moduleId" element={<<Track>LessonPage />} />
-<Route path="/<track>/module/:moduleId/:stepId" element={<<Track>LessonPage />} />
-<Route path="/<track>/summary" element={<<Track>SummaryPage />} />
+// In Routes — use /learn/:pathId routing pattern:
+<Route path="/learn/<track>" element={<<Track>HomePage />} />
+<Route path="/learn/<track>/:moduleId" element={<<Track>LessonPage />} />
+<Route path="/learn/<track>/:moduleId/:stepId" element={<<Track>LessonPage />} />
+<Route path="/learn/<track>/summary" element={<<Track>SummaryPage />} />
 ```
+
+> Register the path in `src/data/paths.ts` (official) or `src/content/community/<id>/path.json` (community) so it appears in the catalog.
 
 ### Step 6: Add header navigation
 

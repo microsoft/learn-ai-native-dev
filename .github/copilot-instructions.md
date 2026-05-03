@@ -1,6 +1,14 @@
 # GitHub Copilot Instructions
 
-This is an **AI-Native Development Tutorial** website. See [AGENTS.md](../AGENTS.md) for project context, tech stack, structure, design guidelines, and deployment.
+This is an **AI-Native Development Tutorial** website.
+
+- Project context, tech stack, structure, and dev commands → [`AGENTS.md`](../AGENTS.md).
+- Website-as-product design spec (principles, IA, components, per-part design) → [`docs/`](../docs).
+- Build harness (instructions, prompts, skills, agents, hooks) → this folder ([`.github/`](.)). See [`docs/harness.md`](../docs/harness.md) for the map.
+
+After structural changes (paths, modules, diagrams, custom markdown syntax, or
+any file under `.github/{instructions,prompts,skills,agents,hooks}/`), run
+`@docs-auditor` to catch drift in `docs/`.
 
 ## Code Generation Rules
 

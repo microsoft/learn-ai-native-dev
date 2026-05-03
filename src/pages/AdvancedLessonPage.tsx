@@ -132,11 +132,11 @@ export function AdvancedLessonPage() {
   const moduleLetter = String.fromCharCode(64 + module.number)
 
   return (
-    <div className="min-h-[calc(100vh-56px)] bg-background">
+    <div className="min-h-[calc(100vh-56px)] bg-background" data-accent="violet">
       {/* Sidebar for larger screens */}
       <aside className="hidden lg:fixed lg:left-0 lg:top-14 lg:flex lg:h-[calc(100vh-56px)] lg:w-72 lg:flex-col lg:border-r lg:border-neutral-6 lg:bg-neutral-1">
         <div className="flex flex-col gap-1 p-4">
-          <Link to="/advanced" className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2 mb-4">
+          <Link to="/learn/agentic" className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2 mb-4">
             <ArrowLeft size={14} />
             Advanced Track
           </Link>
@@ -191,16 +191,16 @@ export function AdvancedLessonPage() {
         </div>
       </aside>
 
-      <div className="px-6 py-8 lg:pl-80 lg:pr-12 lg:py-12 transition-[padding] duration-300">
+      <div className="px-6 py-8 lg:pl-72 lg:pr-12 lg:py-12 transition-[padding] duration-300">
         <div className="mx-auto max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
           {/* Sticky Progress Header */}
           <div className="sticky top-14 z-30 mb-6 flex items-center justify-between gap-3 rounded-b-lg border-b border-border bg-background/95 px-4 py-3 backdrop-blur-md shadow-sm">
             <div className="min-w-0 flex-1">
-              <div className="text-xs font-semibold text-foreground truncate flex items-center gap-2">
-                <Rocket className="text-amber-600 dark:text-amber-400" size={12} weight="fill" />
+              <div className="text-xs font-semibold text-foreground line-clamp-2 flex items-center gap-2">
+                <Rocket className="text-amber-600 dark:text-amber-400 shrink-0" size={12} weight="fill" />
                 Module {moduleLetter}: {module.title}
               </div>
-              <div className="text-[11px] text-muted-foreground truncate">
+              <div className="text-[11px] text-muted-foreground line-clamp-2">
                 Step {activeStepIndex + 1}: {module.steps[activeStepIndex]?.title ?? ''}
               </div>
             </div>
@@ -223,7 +223,7 @@ export function AdvancedLessonPage() {
 
           {/* Mobile back link */}
           <div className="lg:hidden mb-6">
-            <Link to="/advanced" className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
+            <Link to="/learn/agentic" className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
               <ArrowLeft size={14} />
               Advanced Track
             </Link>

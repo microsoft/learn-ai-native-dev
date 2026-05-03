@@ -210,7 +210,7 @@ Complete these checks before publishing:
 
 - [ ] Run Quick QA Check (above) — all tracks pass
 - [ ] **Version check (use `version-checker` skill)** — CLI commands and tool references are current
-- [ ] Accessibility check (use `accessibility-checker` skill) — content is beginner-friendly
+- [ ] Accessibility check (see the **Accessibility & readability** section below) — content is beginner-friendly
 - [ ] Build succeeds: `npm run build`
 
 ### Version Currency (Critical for Terminal Track)
@@ -222,3 +222,39 @@ The Terminal track (Modules F-H) references rapidly-evolving CLI tools. **Before
 3. Check official docs for breaking changes
 
 See the **`version-checker`** skill for the full verification process.
+
+## Accessibility & readability
+
+This section was the former `accessibility-checker` skill. Run it as part of every QA pass.
+
+### Plain-language pass
+
+- Reading level target: ~grade 8. Read each section out loud; if a sentence runs out of breath, split it.
+- Replace jargon with plain alternatives the first time it appears, e.g. "MCP (Model Context Protocol — a way for AI tools to talk to external systems)".
+- Define every acronym on first use within a file.
+- Avoid metaphors that assume a specific cultural context.
+
+### Inclusive language
+
+- Prefer "they/them" over "he/she" or "guys".
+- Use "allowlist/blocklist" not "whitelist/blacklist"; "main" not "master".
+- Say "people who use screen readers" not "screen-reader users".
+- Avoid ableist phrasing ("crazy", "insane", "dummy").
+
+### Visual / structural a11y
+
+- Every diagram (`<Diagram name="..." />`) must have a textual paragraph that conveys the same information for screen-reader users.
+- Headings must follow a single hierarchy (`#` → `##` → `###`); do not skip levels.
+- Code blocks need a language hint so syntax highlighting and screen readers identify them.
+- Link text must be meaningful out of context — never "click here".
+- Color must not be the only signal; pair it with text or icons.
+
+### Quick check
+
+```bash
+# Find suspicious patterns across all content.
+grep -rniE "(click here|simply|obviously|whitelist|blacklist|crazy|guys)" src/content || echo "OK"
+```
+
+If anything is flagged, rewrite — not delete — the offending text.
+
