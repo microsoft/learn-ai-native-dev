@@ -1,0 +1,61 @@
+<!--
+  Practice → problems → intuition flywheel.
+  Source: docs/philosophy.md §1 ("the order of those words matters").
+  Three nodes orbit, a pulse travels the loop, vocabulary appears
+  briefly as a faint, optional satellite (per philosophy §3.5).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 280" width="900" height="280" role="img" aria-label="Practice leads to problems leads to intuition; vocabulary is optional and arrives later">
+  <defs>
+    <style><![CDATA[
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .sans { font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif; font-weight: 700; }
+      .ink  { fill: #0a0a0a; }
+      .ink-soft { fill: #3a3a3a; }
+      .dim  { fill: #888; }
+      .acc  { stroke: #ff5500; }
+      .accf { fill: #ff5500; }
+    ]]></style>
+  </defs>
+
+  <!-- horizontal main flow: practice -> problems -> intuition -->
+  <g transform="translate(0,140)">
+    <!-- arrow track -->
+    <line x1="120" y1="0" x2="780" y2="0" stroke="#d8d8d8" stroke-width="2" stroke-dasharray="4 6"/>
+
+    <!-- pulse -->
+    <circle r="6" class="accf">
+      <animateMotion dur="6s" repeatCount="indefinite" path="M 120 0 L 780 0"/>
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.95;1" dur="6s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- nodes -->
+    <g>
+      <circle cx="180" cy="0" r="46" fill="#fff" stroke="#0a0a0a" stroke-width="2"/>
+      <text x="180" y="-4" text-anchor="middle" class="sans ink" font-size="18">practice</text>
+      <text x="180" y="16" text-anchor="middle" class="mono dim" font-size="11">ship small things</text>
+    </g>
+
+    <g>
+      <circle cx="450" cy="0" r="46" fill="#fff" stroke="#0a0a0a" stroke-width="2"/>
+      <text x="450" y="-4" text-anchor="middle" class="sans ink" font-size="18">problems</text>
+      <text x="450" y="16" text-anchor="middle" class="mono dim" font-size="11">you actually care about</text>
+    </g>
+
+    <g>
+      <circle cx="720" cy="0" r="46" fill="#fff" stroke="#0a0a0a" stroke-width="2"/>
+      <text x="720" y="-4" text-anchor="middle" class="sans ink" font-size="18">intuition</text>
+      <text x="720" y="16" text-anchor="middle" class="mono dim" font-size="11">taste · contrast · reps</text>
+    </g>
+  </g>
+
+  <!-- vocabulary as optional later satellite -->
+  <g transform="translate(720,230)" opacity="0">
+    <line x1="0" y1="-40" x2="0" y2="-10" stroke="#bbb" stroke-width="1" stroke-dasharray="2 4"/>
+    <text x="0" y="6" text-anchor="middle" class="mono dim" font-size="11">vocabulary · later · optional</text>
+    <animate attributeName="opacity" values="0;0;0.8;0.8;0" keyTimes="0;0.55;0.7;0.92;1" dur="6s" repeatCount="indefinite"/>
+  </g>
+
+  <!-- title row -->
+  <text x="450" y="40" text-anchor="middle" class="sans ink" font-size="16" letter-spacing="2">THE ORDER OF THESE WORDS MATTERS</text>
+  <text x="450" y="60" text-anchor="middle" class="mono dim" font-size="11">— docs/philosophy.md §1</text>
+</svg>

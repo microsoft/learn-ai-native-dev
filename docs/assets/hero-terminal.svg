@@ -1,0 +1,110 @@
+<!--
+  Terminal cast: simulates running /add-example in Copilot Chat.
+  Aligned with docs/philosophy.md: the repo IS the contribution platform;
+  AI helps you contribute to a curriculum about contributing with AI.
+  Aligned with docs/design-principles.md: subtle motion, monospace typography,
+  ink + accent palette, no decorative-only elements.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" width="900" height="360" role="img" aria-label="Terminal demo: /add-example slash command scaffolds a recipe">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#0d0d0f"/>
+      <stop offset="100%" stop-color="#15151a"/>
+    </linearGradient>
+    <style><![CDATA[
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .dim  { fill: #8a8a93; }
+      .ink  { fill: #e8e8ec; }
+      .acc  { fill: #ff5500; }
+      .ok   { fill: #5fd17a; }
+      .muted{ fill: #5a5a63; }
+    ]]></style>
+  </defs>
+
+  <!-- window chrome -->
+  <rect x="0" y="0" width="900" height="360" rx="12" fill="url(#bg)"/>
+  <rect x="0" y="0" width="900" height="34" rx="12" fill="#1c1c22"/>
+  <rect x="0" y="22" width="900" height="12" fill="#1c1c22"/>
+  <circle cx="20" cy="17" r="6" fill="#ff5f57"/>
+  <circle cx="40" cy="17" r="6" fill="#febc2e"/>
+  <circle cx="60" cy="17" r="6" fill="#28c840"/>
+  <text x="450" y="22" class="mono dim" font-size="12" text-anchor="middle">copilot · chat — learn-ai-native-dev</text>
+
+  <!-- prompt + lines reveal one by one via SMIL opacity animations -->
+  <g class="mono" font-size="15">
+
+    <!-- line 1: $ prompt with /add-example typed in -->
+    <text x="32" y="78">
+      <tspan class="acc">›</tspan>
+      <tspan class="ink" dx="6">/</tspan><tspan class="ink">add-example</tspan>
+      <tspan class="muted" dx="6">__</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.2s" fill="freeze"/>
+    </text>
+
+    <!-- thinking dots -->
+    <text x="32" y="116" class="dim" opacity="0">
+      ✦ understanding intent…
+      <animate attributeName="opacity" values="0;1" dur="0.2s" begin="1.0s" fill="freeze"/>
+    </text>
+
+    <!-- audience prompt -->
+    <text x="32" y="144" class="ink" opacity="0">
+      <tspan class="dim">?</tspan> Audience? <tspan class="acc">researcher</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.2s" begin="1.6s" fill="freeze"/>
+    </text>
+
+    <!-- project shape prompt -->
+    <text x="32" y="170" class="ink" opacity="0">
+      <tspan class="dim">?</tspan> Project shape? <tspan class="acc">iris-lab</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.2s" begin="2.0s" fill="freeze"/>
+    </text>
+
+    <!-- working -->
+    <text x="32" y="208" class="dim" opacity="0">
+      ✦ scaffolding recipe…
+      <animate attributeName="opacity" values="0;1" dur="0.2s" begin="2.6s" fill="freeze"/>
+    </text>
+
+    <!-- writes -->
+    <text x="32" y="234" opacity="0">
+      <tspan class="dim">+</tspan>
+      <tspan class="ink" dx="8">src/content/community/iris-lab/</tspan><tspan class="acc">recipe-eda-prompt.md</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.2s" begin="3.0s" fill="freeze"/>
+    </text>
+
+    <text x="32" y="258" opacity="0">
+      <tspan class="dim">~</tspan>
+      <tspan class="ink" dx="8">src/data/communityLoader.ts</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.2s" begin="3.4s" fill="freeze"/>
+    </text>
+
+    <text x="32" y="282" opacity="0">
+      <tspan class="dim">~</tspan>
+      <tspan class="ink" dx="8">docs/tracks/community.md</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.2s" begin="3.7s" fill="freeze"/>
+    </text>
+
+    <!-- success -->
+    <text x="32" y="318" opacity="0">
+      <tspan class="ok">✓</tspan>
+      <tspan class="ink" dx="8">recipe ready · open the PR · </tspan><tspan class="dim">@reviewer takes it from here</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.3s" begin="4.1s" fill="freeze"/>
+    </text>
+
+    <!-- loop reset: fade everything out, then restart -->
+    <g>
+      <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.85;1" dur="9s" begin="0s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- blinking cursor -->
+  <rect x="156" y="66" width="9" height="16" class="acc">
+    <animate attributeName="opacity" values="1;0;1" dur="1s" begin="0.6s" repeatCount="6"/>
+    <animate attributeName="opacity" values="0" dur="0.01s" begin="6.6s" fill="freeze"/>
+  </rect>
+
+  <!-- restart whole scene every 9s by re-triggering opacity reset -->
+  <rect width="900" height="360" fill="url(#bg)" opacity="0">
+    <animate attributeName="opacity" values="0;0;1;0" keyTimes="0;0.94;0.97;1" dur="9s" repeatCount="indefinite"/>
+  </rect>
+</svg>
