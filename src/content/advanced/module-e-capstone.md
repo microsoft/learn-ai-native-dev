@@ -104,7 +104,7 @@ Then get stats for your own GitHub username.
 ## step: phase-2-issue
 ### title: Phase 2: Use Coding Agent for Implementation
 
-Now let's use the GitHub Coding Agent to implement the feature.
+Now let's use the Copilot coding agent to implement the feature.
 
 **Create this issue on GitHub:**
 
@@ -329,7 +329,7 @@ Here's everything you've built across the full tutorial:
 
 ```text
 1. Define feature (specs/PRD.md, issue)
-2. Implement (VS Code agent or GitHub coding agent)
+2. Implement (VS Code agent or Copilot coding agent)
 3. Review (orchestrator with specialists)
 4. Test (AI-generated comprehensive tests)
 5. Ship (with confidence)
@@ -373,7 +373,7 @@ Want to push further? Try these:
 
 **Official Documentation:**
 - [MCP Specification](https://modelcontextprotocol.io/) — Protocol spec, SDK docs, and server directory
-- [GitHub Copilot Cloud Agent](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent) — Cloud agent docs
+- [Copilot Coding Agent](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent) — Coding agent docs
 - [GitHub Copilot Extensions](https://docs.github.com/en/copilot/building-copilot-extensions) — Build third-party integrations
 - [Agent Skills Standard](https://agentskills.io/) — Reusable skill specification
 

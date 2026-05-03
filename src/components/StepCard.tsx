@@ -18,7 +18,32 @@ import {
 import type { Step } from '@/data/tutorialContent'
 import { resolveContent } from '@/data/tutorialContent'
 import { useTrack } from '@/hooks/use-track'
+import { useAnimateIn } from '@/hooks/use-animate-in'
 import { CaretRight } from '@phosphor-icons/react'
+
+const DIAGRAM_MAP: Record<string, React.ComponentType> = {
+  'file-hierarchy': FileHierarchyDiagram,
+  'mcp-architecture': MCPArchitectureDiagram,
+  'workflow-comparison': WorkflowComparisonDiagram,
+  'agent-orchestration': AgentOrchestrationDiagram,
+  'ai-testing-flow': AITestingFlowDiagram,
+  'capstone-architecture': CapstoneArchitectureDiagram,
+  'agentic-loop': AgenticLoopDiagram,
+  'provider-abstraction': ProviderAbstractionDiagram,
+  'skill-system-flow': SkillSystemFlowDiagram,
+  'spec-driven-cycle': SpecDrivenCycleDiagram,
+}
+
+function AnimatedDiagram({ name }: { name?: string }) {
+  const { ref } = useAnimateIn<HTMLDivElement>()
+  const Component = name ? DIAGRAM_MAP[name] : undefined
+  if (!Component) return null
+  return (
+    <div ref={ref} data-animate-in>
+      <Component />
+    </div>
+  )
+}
 
 interface StepCardProps {
   step: Step | { id: string; title: string; content: string; prompt?: { number: string; title: string; code: string; metaPrompt?: string }; prompts?: { number: string; title: string; code: string; metaPrompt?: string }[] }
@@ -65,7 +90,7 @@ function CollapsibleBlock({ title, content }: { title: string; content: string }
         />
         <span dangerouslySetInnerHTML={{ __html: parseMarkdown(title) }} />
       </CollapsibleTrigger>
-      <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-collapse-up data-[state=open]:animate-collapse-down">
+      <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
         <div className="ml-5 border-l border-border pl-4 pt-1 pb-2">
           {blocks.map((block, idx) => (
             <CollapsibleBlockRenderer key={idx} block={block} idx={idx} />
@@ -757,30 +782,7 @@ export function StepCard({ step, partNumber, index, isAdvanced = false }: StepCa
 
       case 'diagram':
         // Render named diagram components
-        switch (block.diagramName) {
-          case 'file-hierarchy':
-            return <FileHierarchyDiagram key={idx} />
-          case 'mcp-architecture':
-            return <MCPArchitectureDiagram key={idx} />
-          case 'workflow-comparison':
-            return <WorkflowComparisonDiagram key={idx} />
-          case 'agent-orchestration':
-            return <AgentOrchestrationDiagram key={idx} />
-          case 'ai-testing-flow':
-            return <AITestingFlowDiagram key={idx} />
-          case 'capstone-architecture':
-            return <CapstoneArchitectureDiagram key={idx} />
-          case 'agentic-loop':
-            return <AgenticLoopDiagram key={idx} />
-          case 'provider-abstraction':
-            return <ProviderAbstractionDiagram key={idx} />
-          case 'skill-system-flow':
-            return <SkillSystemFlowDiagram key={idx} />
-          case 'spec-driven-cycle':
-            return <SpecDrivenCycleDiagram key={idx} />
-          default:
-            return null
-        }
+        return <AnimatedDiagram key={idx} name={block.diagramName} />
 
       case 'tabs':
         return block.tabs ? (

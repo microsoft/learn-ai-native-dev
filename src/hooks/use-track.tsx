@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
-import { ExampleTrack, exampleTracks, getTrackById } from '@/data/exampleTracks'
+import { ProjectShape, projectShapes, getProjectShapeById } from '@/data/projectShapes'
 
 interface TrackContextType {
-  selectedTrack: ExampleTrack
+  selectedTrack: ProjectShape
   setSelectedTrack: (trackId: string) => void
   clearSelectedTrack: () => void
   hasSelectedTrack: boolean
@@ -20,7 +20,7 @@ export function TrackProvider({ children }: { children: ReactNode }) {
     return null
   })
 
-  const selectedTrack = selectedTrackId ? getTrackById(selectedTrackId) : exampleTracks[0]
+  const selectedTrack = selectedTrackId ? getProjectShapeById(selectedTrackId) : projectShapes[0]
   const hasSelectedTrack = selectedTrackId !== null
 
   useEffect(() => {

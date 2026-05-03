@@ -6,17 +6,13 @@ infer: true
 tools:
   ['read/readFile', 'search', 'web', 'agent']
 handoffs:
-  - label: Update Curriculum
-    agent: curriculum-designer
-    prompt: "Restructure learning path based on tool changes"
+  - label: Apply Findings
+    agent: author
+    prompt: "Update content/examples to reflect current syntax, APIs, and best practices"
     send: false
-  - label: Revise Content
-    agent: technical-writer
-    prompt: "Update documentation based on research findings"
-    send: false
-  - label: Update Code
-    agent: developer
-    prompt: "Modify examples to reflect current syntax/APIs"
+  - label: Pre-Ship
+    agent: reviewer
+    prompt: "Run pre-ship review with the refreshed content"
     send: false
 ---
 

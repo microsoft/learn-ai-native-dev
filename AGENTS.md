@@ -2,6 +2,12 @@
 
 This file provides context and guidelines for AI agents (GitHub Copilot, Claude, etc.) working on this codebase.
 
+> **Two surfaces, two homes.** [`docs/`](docs) is the design spec for the
+> website-as-product (what we teach, how content is structured, principles).
+> [`.github/`](.github) is the build harness (instructions, prompt files,
+> skills, custom agents, hooks) for *editing* the website. Start with
+> [`docs/README.md`](docs/README.md) and [`docs/harness.md`](docs/harness.md).
+
 ## Project Overview
 
 **AI-Native Development Tutorial Website** - An interactive tutorial teaching anyone how to accelerate their workflow using AI-Native development techniques.
@@ -38,7 +44,7 @@ src/
 ├── data/             # Static data and content mappings
 │   ├── paths.ts            # Official path registry (single source of truth)
 │   ├── communityLoader.ts  # Loads src/content/community/*/path.json
-│   └── exampleTracks.ts    # Foundation example projects
+│   └── projectShapes.ts   # Foundation project shapes (formerly exampleTracks)
 ├── hooks/            # Custom React hooks
 ├── lib/              # Utility functions
 ├── pages/            # Page components (Home, Catalog, Examples, Lesson, Contribute…)
@@ -51,7 +57,7 @@ src/
 - `/learn` — Catalog of all paths (filterable; Official + Community)
 - `/learn/:pathId` — Path home (currently routed into legacy Home pages per path)
 - `/learn/:pathId/:moduleId/:stepId?` — Lesson
-- `/examples` — Pick an example project (audience-filtered)
+- `/projects` — Pick a project shape (audience-filtered). `/examples` redirects here.
 - `/contribute` — Contribution hub with three shapes (add-example, fix-content, propose-topic)
 
 Legacy URLs (`/lesson/*`, `/advanced/*`, `/terminal/*`) redirect into `/learn/:pathId/*` for back-compat.
@@ -122,3 +128,6 @@ npm run lint     # Run ESLint
 2. **Maintain consistency** - Follow established conventions
 3. **Test responsively** - Check both desktop and mobile views
 4. **Build before committing** - Run `npm run build` to catch errors
+5. **Keep docs in sync** - After structural changes (paths, modules, diagrams,
+   custom syntax, harness files), run `@docs-auditor` to catch drift between
+   the code and `docs/`.

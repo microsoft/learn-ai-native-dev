@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { cn } from '@/lib/utils'
-import type { ExampleAudience } from '@/data/exampleTracks'
+import type { ExampleAudience } from '@/data/projectShapes'
 
 export type AudienceFilter = 'all' | ExampleAudience
 
@@ -14,9 +14,9 @@ interface Option {
 
 const OPTIONS: Option[] = [
   { value: 'all', label: 'All', emoji: '✨' },
-  { value: 'business', label: 'Business', emoji: '📊' },
+  { value: 'researcher', label: 'Researcher', emoji: '🔬' },
   { value: 'developer', label: 'Developer', emoji: '🛠' },
-  { value: 'nerdy', label: 'Nerdy', emoji: '🎮' },
+  { value: 'business', label: 'Business', emoji: '📊' },
   { value: 'creative', label: 'Creative', emoji: '🎨' },
 ]
 

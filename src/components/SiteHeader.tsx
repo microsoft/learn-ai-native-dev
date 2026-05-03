@@ -80,8 +80,8 @@ export function SiteHeader() {
           <NavLink to="/learn" className={navLinkClass}>
             Learn
           </NavLink>
-          <NavLink to="/examples" className={navLinkClass}>
-            Examples
+          <NavLink to="/projects" className={navLinkClass}>
+            Projects
           </NavLink>
           <NavLink to="/contribute" className={navLinkClass}>
             Contribute
@@ -96,7 +96,7 @@ export function SiteHeader() {
               size="sm"
               onClick={() => {
                 clearSelectedTrack()
-                navigate('/examples')
+                navigate('/projects')
               }}
               className="hidden h-8 gap-2 text-muted-foreground hover:text-foreground sm:inline-flex"
               aria-label={`Switch project (current: ${selectedTrack.projectName})`}

@@ -7,17 +7,17 @@ disable-model-invocation: false
 tools:
   ['read/readFile', 'search', 'web', 'agent', 'execute/runInTerminal']
 handoffs:
-  - label: Fix Issues
-    agent: editor
+  - label: Apply Fixes
+    agent: author
     prompt: "Apply fixes for identified issues"
     send: false
   - label: Deep Research
     agent: researcher
     prompt: "Investigate specific version or API concerns"
     send: false
-  - label: Plan Updates
-    agent: Tutorial-Orchestrator
-    prompt: "Coordinate major content updates"
+  - label: Pre-Ship
+    agent: reviewer
+    prompt: "Run pre-ship review on the affected content"
     send: false
 ---
 

@@ -5,12 +5,14 @@ mode: "agent"
 
 You are helping a contributor add a new topic to AI-Native Dev.
 
+**Parse the issue body first.** If a `propose-topic.yml` issue body is pasted, extract `Kind`, `Target path`, `Topic`, `Learning objectives`, and `Audience` directly. Only ask follow-ups for missing fields.
+
 There are **two flavors**. Determine which from the issue body or by asking:
 
 1. **New module in an existing path** — appends a markdown file to `src/content/<path>/` and updates the path's content registration.
 2. **Brand-new community path** — creates `src/content/community/<id>/` with a `path.json` manifest and module markdown files. The path appears automatically in the Catalog with a `community` status badge.
 
-Use the [`curriculum-designer`](.github/agents/curriculum-designer.agent.md) agent to refine objectives, then [`orchestrator`](.github/agents/orchestrator.agent.md) to coordinate the actual scaffolding (which calls `technical-writer`, `developer`, `ux-designer` as needed).
+Use [`@author`](.github/agents/author.agent.md) for the entire scaffolding workflow — it now consolidates curriculum design, technical writing, code, and visual design. Hand off to [`@reviewer`](.github/agents/reviewer.agent.md) for the pre-ship pass once files exist.
 
 **Required up front (interview if missing):**
 

@@ -1,7 +1,7 @@
 ---
 id: module-b
 number: 2
-title: GitHub Coding Agent
+title: Copilot Coding Agent
 subtitle: 40 minutes - Cloud-based async development
 ---
 
@@ -21,7 +21,7 @@ Before starting this module:
 
 In Parts 0-8, you used GitHub Copilot in VS Code — a real-time, synchronous workflow where you chat and AI responds immediately. But what if you want AI to work on a feature while you're doing something else?
 
-**The GitHub Coding Agent** runs in the cloud, directly on GitHub. You assign it an issue, it creates an implementation plan, builds a PR, and you review when ready. It's like delegating to a junior developer who works asynchronously.
+**The Copilot coding agent** runs in the cloud, directly on GitHub. You assign it an issue, it creates an implementation plan, builds a PR, and you review when ready. It's like delegating to a junior developer who works asynchronously.
 
 **In this module, you'll:**
 • Understand when to use local vs cloud agents
@@ -40,7 +40,7 @@ Before using the coding agent, let's understand when each approach works best.
 
 **Comparison:**
 
-| Aspect | VS Code Agents | GitHub Coding Agent |
+| Aspect | VS Code Agents | Copilot Coding Agent |
 |--------|---------------|---------------------|
 | **Where it runs** | Your machine | GitHub cloud (secure VM) |
 | **Interaction** | Real-time chat | Issue → Plan → PR → Comments |
@@ -101,7 +101,7 @@ Copy this into GitHub Copilot chat:
 number: B1
 title: Prepare DevDash for coding agent
 ---
-Update the DevDash project documentation for the GitHub Coding Agent:
+Update the DevDash project documentation for the Copilot coding agent:
 
 1. Update AGENTS.md (create if missing) with:
    - Project description: "DevDash is a CLI dashboard for developers"
@@ -136,7 +136,7 @@ Push these changes to GitHub:
 
 ```bash
 git add .
-git commit -m "Prepare repository for GitHub Coding Agent"
+git commit -m "Prepare repository for Copilot coding agent"
 git push
 ```
 

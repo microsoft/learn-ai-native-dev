@@ -1,4 +1,4 @@
-import { ExampleTrack } from './exampleTracks'
+import { ProjectShape } from './projectShapes'
 
 export interface Step {
   id: string
@@ -149,7 +149,7 @@ const capitalize = (value: string) => {
   return value.charAt(0).toUpperCase() + value.slice(1)
 }
 
-const buildTemplateContext = (track: ExampleTrack) => ({
+const buildTemplateContext = (track: ProjectShape) => ({
   projectName: track.projectName,
   projectNameLower: track.projectName.toLowerCase(),
   folderName: track.folderName,
@@ -164,7 +164,7 @@ const buildTemplateContext = (track: ExampleTrack) => ({
   }
 })
 
-const applyTemplate = (template: string, track: ExampleTrack) => {
+const applyTemplate = (template: string, track: ProjectShape) => {
   const context = buildTemplateContext(track)
 
   const withLists = template.replace(
@@ -189,7 +189,7 @@ const applyTemplate = (template: string, track: ExampleTrack) => {
   })
 }
 
-export const resolveContent = (content: string, track: ExampleTrack): string => {
+export const resolveContent = (content: string, track: ProjectShape): string => {
   return applyTemplate(content, track)
 }
 

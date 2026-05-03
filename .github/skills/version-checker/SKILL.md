@@ -25,7 +25,7 @@ This skill validates that AI-Native Development Tutorial content references curr
 | Agent Mode | Stable | References to "Agent" in mode picker | [docs.github.com/copilot](https://docs.github.com/copilot) |
 | Custom Agents | Stable | `.agent.md` file extension | [Agent docs](https://docs.github.com/en/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot) |
 | Agent Skills | Preview | `chat.useAgentSkills` setting | VS Code release notes |
-| Copilot Coding Agent | Stable | GitHub.com autonomous agent | [GitHub Copilot docs](https://docs.github.com/en/copilot/using-github-copilot/using-the-github-copilot-coding-agent) |
+| Copilot Coding Agent | Stable | GitHub.com autonomous agent | [GitHub Copilot docs](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent) |
 | Model Picker | Stable | Model selection in chat | VS Code Copilot release notes |
 
 **Deprecated terminology to flag:**
