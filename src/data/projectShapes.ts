@@ -1,9 +1,17 @@
 import type { ContentStatus } from './paths'
 
-export type ExampleAudience = 'business' | 'developer' | 'nerdy' | 'creative'
+export type ExampleAudience = 'researcher' | 'developer' | 'business' | 'creative'
 export type ExampleDifficulty = 'starter' | 'spicy'
 
-export interface ExampleTrack {
+/**
+ * A ProjectShape is a problem domain the learner picks (e.g. Iris Lab,
+ * Deal Dashboard). Foundation lessons fill template variables from this
+ * data. Other paths may consume shapes in the future.
+ *
+ * See `docs/philosophy.md` §4 for the role of ProjectShape in the
+ * three-content-kind model (Path / Recipe / ProjectShape).
+ */
+export interface ProjectShape {
   id: string
   name: string
   icon: string
@@ -12,15 +20,15 @@ export interface ExampleTrack {
   projectName: string
   folderName: string
   /**
-   * Who this example is for. Drives the audience filter on /examples.
-   * Defaults to 'business' for backward compatibility with existing tracks.
+   * Who this project is for. Drives the audience filter on /projects.
+   * Defaults to 'business' for backward compatibility with existing shapes.
    */
   audience?: ExampleAudience
   /** Optional second filter; defaults to 'starter' */
   difficulty?: ExampleDifficulty
-  /** Lifecycle status. Existing tracks are 'official'. */
+  /** Lifecycle status. Existing shapes are 'official'. */
   status?: ContentStatus
-  /** GitHub handle for community-contributed examples */
+  /** GitHub handle for community-contributed shapes */
   contributedBy?: string
   // What the user builds
   whatYouBuild: string
@@ -53,7 +61,91 @@ export interface ExampleTrack {
   verificationExamples: string[]
 }
 
-export const exampleTracks: ExampleTrack[] = [
+/** @deprecated Use `ProjectShape`. Kept for backward-compat with older imports. */
+export type ExampleTrack = ProjectShape
+
+export const projectShapes: ProjectShape[] = [
+  // ───────────────────────────────────────────────────────────────────────
+  // Researcher audience
+  // ───────────────────────────────────────────────────────────────────────
+  {
+    id: 'iris-classifier',
+    name: 'Iris Classifier Lab',
+    icon: '🔬',
+    industry: 'Data & ML',
+    audience: 'researcher',
+    status: 'official',
+    description: 'Train a tiny ML model in the browser. Load a sample flower dataset, fit a classifier, and watch accuracy improve — the simplest possible intro to spec-driven ML for students and researchers.',
+    projectName: 'Iris Classifier Lab',
+    folderName: 'iris-classifier',
+    whatYouBuild: 'A browser-based ML lab that trains a classifier on a sample dataset and visualizes predictions',
+    sampleDataDescription: 'sample Iris flower measurements with species labels',
+    dataItems: 'predictions',
+    colorCoding: {
+      green: 'correct — predicted species matches the label',
+      yellow: 'uncertain — low-confidence prediction (under threshold)',
+      red: 'misclassified — predicted species is wrong'
+    },
+    requirements: {
+      goal: 'A small ML lab where a researcher or student can train a classifier on a labeled dataset, tweak hyperparameters, and inspect which samples the model gets right, wrong, or is unsure about.',
+      users: 'ML students, data-science learners, and researchers exploring spec-driven workflows for small models',
+      whatItShows: [
+        'A data table of at least 30 sample rows with features and ground-truth labels',
+        'A "Train" button that fits a classifier and reports accuracy',
+        'A predictions panel where each row is color-coded: Green (correct), Yellow (low confidence), Red (misclassified)',
+        'A confusion matrix or per-class accuracy summary'
+      ],
+      r1Through6: `R1: Header with project title, dataset name, and current model accuracy
+R2: Data table displaying at least 30 sample rows with feature columns and species label
+R3: Predictions color-coded green / yellow / red after training
+R4: Numeric values formatted to a sensible precision (e.g., 0.87 accuracy, 4.50 cm)
+R5: Works immediately when opened — bundled sample data, no upload required
+R6: Clean, lab-notebook appearance suitable for a research demo or class`,
+      r7Through12: `R7: Train the model
+    - "Train" button fits a classifier (e.g., logistic regression or k-NN) on the sample data
+    - Shows training progress and final accuracy
+    - How to verify: Click Train — accuracy number appears (e.g., "Accuracy: 0.93")
+
+R8: Filter predictions by outcome
+    - Buttons: All, Correct, Uncertain, Misclassified
+    - Active filter highlighted; counts update
+    - How to verify: Click "Misclassified" — only red rows appear
+
+R9: Hyperparameter controls
+    - Sliders or selects for at least two knobs (e.g., learning rate, k for k-NN, train/test split)
+    - Re-training updates accuracy and prediction colors
+    - How to verify: Change k from 3 → 7, retrain — accuracy changes
+
+R10: Confusion matrix or per-class summary
+    - Visual grid showing predicted vs actual counts per class
+    - How to verify: After training — matrix populates with non-zero cells on the diagonal
+
+R11: Reset to defaults
+    - Button to restore original sample data and default hyperparameters
+    - How to verify: Tweak knobs, click Reset — values return to defaults
+
+R12: Responsive layout
+    - Table, controls, and matrix stack on phone screens
+    - How to verify: Narrow browser — layout adapts gracefully`
+    },
+    taskExamples: {
+      tooBig: 'Build the entire ML lab',
+      rightSize: [
+        'Render a data table with feature columns and the label column',
+        'Add 30 sample Iris rows spanning all three species',
+        'Add a Train button that updates an accuracy number above the table'
+      ]
+    },
+    demoScriptContext: 'a researcher or instructor might say when walking students through a first ML model',
+    verificationExamples: [
+      'Click Train — accuracy appears (e.g., 0.93) and rows turn green / yellow / red',
+      'Click "Misclassified" — only red rows remain',
+      'Change a hyperparameter, retrain — accuracy and confusion matrix update'
+    ]
+  },
+  // ───────────────────────────────────────────────────────────────────────
+  // Business audience
+  // ───────────────────────────────────────────────────────────────────────
   {
     id: 'deal-dashboard',
     name: 'Deal Health Dashboard',
@@ -436,15 +528,12 @@ R12: Responsive layout
       'Click an error — full stack trace expands below'
     ]
   },
-  // ───────────────────────────────────────────────────────────────────────
-  // Nerdy audience
-  // ───────────────────────────────────────────────────────────────────────
   {
     id: 'pomodoro-tracker',
     name: 'Pomodoro Focus Tracker',
     icon: '🍅',
-    industry: 'Productivity & Hacking',
-    audience: 'nerdy',
+    industry: 'Developer Productivity',
+    audience: 'developer',
     status: 'official',
     description: 'Build the focus timer of your dreams. Track sessions, see your streak, and gamify your deep work — perfect Friday-afternoon hack project.',
     projectName: 'Pomodoro Focus Tracker',
@@ -595,6 +684,11 @@ R12: Responsive layout
   }
 ]
 
-export const getTrackById = (id: string): ExampleTrack => {
-  return exampleTracks.find(track => track.id === id) || exampleTracks[0]
+export const getProjectShapeById = (id: string): ProjectShape => {
+  return projectShapes.find(shape => shape.id === id) || projectShapes[0]
 }
+
+/** @deprecated Use `projectShapes`. */
+export const exampleTracks = projectShapes
+/** @deprecated Use `getProjectShapeById`. */
+export const getTrackById = getProjectShapeById

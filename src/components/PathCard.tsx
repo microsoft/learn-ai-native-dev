@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { StatusBadge } from '@/components/StatusBadge'
 import {
   Sparkle,
   Rocket,
@@ -43,15 +42,34 @@ interface PathCardProps {
 export function PathCard({ path }: PathCardProps) {
   const Icon = ICON_MAP[path.iconName] ?? Compass
   const accent = ACCENT_MAP[path.id] ?? 'electric'
+  const cardRef = useRef<HTMLAnchorElement>(null)
+
+  // Cursor-following spotlight via CSS vars (cheap, no React re-renders).
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const el = cardRef.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    el.style.setProperty('--mx', `${e.clientX - rect.left}px`)
+    el.style.setProperty('--my', `${e.clientY - rect.top}px`)
+  }
 
   return (
     <Link
+      ref={cardRef as unknown as React.Ref<HTMLAnchorElement>}
       to={`/learn/${path.id}`}
       className="group block"
       data-accent={accent}
+      onMouseMove={handleMouseMove}
     >
-      <Card className="relative h-full overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--accent-edge)] hover:shadow-[var(--elev-3)]">
-        {/* Soft accent halo on hover */}
+      <Card
+        className="card-spotlight relative h-full overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--accent-edge)] hover:shadow-[var(--elev-3)]"
+      >
+        {/* Cursor-following spotlight */}
+        <div
+          aria-hidden
+          className="card-spotlight__halo pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        />
+        {/* Soft accent halo on hover (kept for ambient color) */}
         <div
           aria-hidden
           className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-[radial-gradient(closest-side,var(--accent-glow),transparent)] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-70"
@@ -70,12 +88,6 @@ export function PathCard({ path }: PathCardProps) {
                 <CardTitle className="text-lg transition-colors group-hover:text-[var(--accent-color)]">
                   {path.title}
                 </CardTitle>
-                <div className="mt-1 flex flex-wrap items-center gap-1.5">
-                  <Badge variant="secondary" className="text-xs capitalize">
-                    {path.level}
-                  </Badge>
-                  <StatusBadge status={path.status} />
-                </div>
               </div>
             </div>
             <ArrowRight

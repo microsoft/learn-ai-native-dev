@@ -11,9 +11,9 @@ subtitle: 45 minutes - Connect AI to external systems
 Before starting this module, ensure you have:
 
 - [ ] **VS Code** with GitHub Copilot extension
-- [ ] **Node.js 18+** installed ([nodejs.org](https://nodejs.org))
+- [ ] **Node.js 20+** installed ([nodejs.org](https://nodejs.org))
 - [ ] **Python 3.10+** installed ([python.org](https://python.org))
-- [ ] **UV package manager** — install with `pip install uv` or see [uv docs](https://docs.astral.sh/uv/getting-started/installation/)
+- [ ] **UV package manager** — install with `curl -LsSf https://astral.sh/uv/install.sh | sh` or `brew install uv` (see [uv docs](https://docs.astral.sh/uv/getting-started/installation/))
 
 > **Why Python?** The official MCP fetch server is written in Python. Your custom servers will use Node.js.
 
@@ -192,7 +192,7 @@ title: Troubleshooting: Server not working?
 ---
 | Problem | Solution |
 |---------|----------|
-| `uvx: command not found` | Install UV: `pip install uv` then restart terminal |
+| `uvx: command not found` | Install UV: `curl -LsSf https://astral.sh/uv/install.sh \| sh` then restart terminal |
 | `Python not found` | Install Python 3.10+ from [python.org](https://python.org) |
 | Server not appearing in Copilot | Check VS Code Output panel → select "MCP" from dropdown |
 | Timeout errors | Try the Docker alternative (see above) |
@@ -454,6 +454,6 @@ Run the dashboard and see live data!
 ## step: whats-next-mcp
 ### title: What's Next
 
-You've extended GitHub Copilot with custom tools that fetch external data. In Module B, you'll learn about the **GitHub Coding Agent** — a cloud-based agent that can work asynchronously on your repository without VS Code open.
+You've extended GitHub Copilot with custom tools that fetch external data. In Module B, you'll learn about the **Copilot coding agent** — a cloud-based agent that can work asynchronously on your repository without VS Code open.
 
 💡 **Keep your MCP servers:** You'll use the weather and quote servers throughout the rest of this track. The DevDash project will grow to include GitHub stats, multi-agent review, and comprehensive testing.

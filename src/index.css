@@ -1158,3 +1158,54 @@ body > * { position: relative; z-index: 2; }
 .terminal-theme ::-webkit-scrollbar-thumb:hover {
   background: rgba(57, 232, 117, 0.35);
 }
+/* ============================================================ */
+/*  Cursor-following spotlight on cards                         */
+/* ============================================================ */
+.card-spotlight {
+  --mx: 50%;
+  --my: 50%;
+}
+.card-spotlight__halo {
+  background: radial-gradient(
+    260px circle at var(--mx) var(--my),
+    var(--accent-soft),
+    transparent 60%
+  );
+}
+
+/* ============================================================ */
+/*  Diagram entrance — triggered via [data-animate-in]          */
+/*  Apply data-animate-in to a diagram wrapper; an              */
+/*  IntersectionObserver in `useAnimateIn` toggles              */
+/*  data-state="visible".                                       */
+/* ============================================================ */
+[data-animate-in] {
+  opacity: 0;
+  transform: translate3d(0, 8px, 0);
+  filter: blur(4px);
+  transition:
+    opacity 700ms cubic-bezier(0.2, 0, 0, 1),
+    transform 700ms cubic-bezier(0.2, 0, 0, 1),
+    filter 700ms cubic-bezier(0.2, 0, 0, 1);
+  will-change: opacity, transform, filter;
+}
+[data-animate-in][data-state="visible"] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+}
+[data-animate-in][data-state="visible"] svg path,
+[data-animate-in][data-state="visible"] svg line,
+[data-animate-in][data-state="visible"] svg polyline {
+  animation: diagram-stroke-in 1200ms cubic-bezier(0.2, 0, 0, 1) both;
+}
+@keyframes diagram-stroke-in {
+  from { stroke-dashoffset: 600; opacity: 0; }
+  to   { stroke-dashoffset: 0;   opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-animate-in] { opacity: 1; transform: none; filter: none; transition: none; }
+  [data-animate-in][data-state="visible"] svg path,
+  [data-animate-in][data-state="visible"] svg line,
+  [data-animate-in][data-state="visible"] svg polyline { animation: none !important; }
+}

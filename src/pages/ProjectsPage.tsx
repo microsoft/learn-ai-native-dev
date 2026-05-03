@@ -4,38 +4,38 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
-import { ExampleCard } from '@/components/ExampleCard'
+import { ProjectCard } from '@/components/ProjectCard'
 import { AudienceFilterBar, AudienceFilter } from '@/components/AudienceFilterBar'
-import { exampleTracks } from '@/data/exampleTracks'
+import { projectShapes } from '@/data/projectShapes'
 import { useTrack } from '@/hooks/use-track'
 import { Shuffle, Plus, MagnifyingGlass } from '@phosphor-icons/react'
 
-export function ExamplesPage() {
+export function ProjectsPage() {
   const { setSelectedTrack } = useTrack()
   const navigate = useNavigate()
   const [audience, setAudience] = useState<AudienceFilter>('all')
   const [query, setQuery] = useState('')
 
-  const visibleTracks = useMemo(() => {
+  const visibleShapes = useMemo(() => {
     const q = query.trim().toLowerCase()
-    return exampleTracks.filter((t) => {
-      if (audience !== 'all' && (t.audience ?? 'business') !== audience) return false
+    return projectShapes.filter((s) => {
+      if (audience !== 'all' && (s.audience ?? 'business') !== audience) return false
       if (q) {
-        const hay = `${t.name} ${t.industry} ${t.description} ${t.whatYouBuild}`.toLowerCase()
+        const hay = `${s.name} ${s.industry} ${s.description} ${s.whatYouBuild}`.toLowerCase()
         if (!hay.includes(q)) return false
       }
       return true
     })
   }, [audience, query])
 
-  const handleSelect = (trackId: string) => {
-    setSelectedTrack(trackId)
+  const handleSelect = (shapeId: string) => {
+    setSelectedTrack(shapeId)
     navigate('/learn/foundation/getting-started/what-youll-learn')
   }
 
   const handleSurprise = () => {
-    if (visibleTracks.length === 0) return
-    const pick = visibleTracks[Math.floor(Math.random() * visibleTracks.length)]
+    if (visibleShapes.length === 0) return
+    const pick = visibleShapes[Math.floor(Math.random() * visibleShapes.length)]
     handleSelect(pick.id)
   }
 
@@ -51,10 +51,10 @@ export function ExamplesPage() {
             <span>Step 01 · Pick a project</span>
           </div>
           <h1 className="font-heading text-2xl font-bold tracking-tight lg:text-3xl">
-            Choose your example
+            Choose your project
           </h1>
           <p className="mt-1.5 max-w-2xl text-sm text-muted-foreground">
-            Same Foundation lessons, different example project. Pick what excites you —
+            Same Foundation lessons, different project shape. Pick what excites you —
             you can switch later.
           </p>
         </header>
@@ -76,21 +76,21 @@ export function ExamplesPage() {
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search examples…"
+              placeholder="Search projects…"
               className="h-8 w-full rounded-md border border-border/70 bg-background/40 pl-7 pr-2.5 text-xs placeholder:text-muted-foreground focus:outline-none"
-              aria-label="Search examples"
+              aria-label="Search projects"
             />
           </div>
 
           <div className="ml-auto flex items-center gap-2">
             <span className="numeric hidden text-[11px] text-muted-foreground sm:inline">
-              {visibleTracks.length} of {exampleTracks.length}
+              {visibleShapes.length} of {projectShapes.length}
             </span>
             <Button
               variant="outline"
               size="sm"
               onClick={handleSurprise}
-              disabled={visibleTracks.length === 0}
+              disabled={visibleShapes.length === 0}
               className="h-8 gap-1.5 border-border/70 bg-background/40 text-xs"
             >
               <Shuffle size={12} weight="bold" />
@@ -100,16 +100,16 @@ export function ExamplesPage() {
         </div>
 
         {/* Dense grid */}
-        {visibleTracks.length > 0 ? (
+        {visibleShapes.length > 0 ? (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {visibleTracks.map((track, i) => (
-              <ExampleCard key={track.id} track={track} onSelect={handleSelect} index={i} />
+            {visibleShapes.map((shape, i) => (
+              <ProjectCard key={shape.id} shape={shape} onSelect={handleSelect} index={i} />
             ))}
           </div>
         ) : (
           <div className="rounded-xl border border-dashed border-border/70 bg-muted/20 p-10 text-center">
             <p className="text-sm text-muted-foreground">
-              No examples match your filters — try widening or be the first to add one!
+              No projects match your filters — try widening or be the first to add one!
             </p>
           </div>
         )}
@@ -119,7 +119,7 @@ export function ExamplesPage() {
           <div>
             <h2 className="font-heading text-sm font-semibold">Don't see one that fits?</h2>
             <p className="text-xs text-muted-foreground">
-              Add your own example in ~5 minutes — agents do most of the work.
+              Add your own project in ~5 minutes — agents do most of the work.
             </p>
           </div>
           <Button
@@ -129,7 +129,7 @@ export function ExamplesPage() {
             onClick={() => navigate('/contribute/add-example')}
           >
             <Plus size={12} weight="bold" />
-            Contribute an example
+            Contribute a project
           </Button>
         </div>
       </div>

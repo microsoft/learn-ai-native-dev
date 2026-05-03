@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Please open this issue **before** writing the content. `@curriculum-designer` will help shape the proposal in this thread, then `@orchestrator` scaffolds the files.
+        Please open this issue **before** writing the content. `@author` will help shape the proposal in this thread and scaffold the files; `@reviewer` runs the pre-ship pass.
 
         New paths land as `status: community` and ship right away — no curriculum gatekeeping. Promotion to `official` is a separate step.
   - type: dropdown

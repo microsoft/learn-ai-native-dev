@@ -11,7 +11,7 @@ subtitle: 40 minutes - Generate comprehensive test suites
 Before starting this module:
 
 - [ ] **Complete Module C** (test-analyzer agent referenced)
-- [ ] **Node.js 18+** with npm
+- [ ] **Node.js 20+** with npm
 - [ ] **DevDash project** from Module A
 
 ---

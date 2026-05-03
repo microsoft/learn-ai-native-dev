@@ -68,7 +68,7 @@ export function HomePage() {
 
           {/* Headline — big, stable; cycling discipline lives on its own line */}
           <h1 className="animate-reveal-up-delay-1 text-display">
-            <span className="block text-foreground">Learn the craft of</span>
+            <span className="block text-foreground">Learn</span>
             <span className="block text-gradient-accent">AI-Native development</span>
           </h1>
 
@@ -85,8 +85,8 @@ export function HomePage() {
 
           {/* Subtitle — educational, no marketing */}
           <p className="mx-auto mt-5 max-w-xl animate-reveal-up-delay-2 text-lede">
-            A hands-on tutorial for developers learning to build with
-            AI assistants — from your first prompt to shipping agents.
+            A hands-on tutorial for anyone learning to build with AI
+            assistants — from your first prompt to shipping agents.
           </p>
 
           {/* Discipline chips — make the curriculum visible at a glance */}
@@ -118,7 +118,7 @@ export function HomePage() {
             <Button
               size="lg"
               variant="ghost"
-              onClick={() => navigate('/examples')}
+              onClick={() => navigate('/projects')}
               className="h-11 gap-2 px-4 text-sm font-medium text-muted-foreground hover:text-foreground"
             >
               Pick an example project
@@ -160,7 +160,7 @@ export function HomePage() {
                   variant="ghost"
                   onClick={() => {
                     clearSelectedTrack()
-                    navigate('/examples')
+                    navigate('/projects')
                   }}
                 >
                   Switch project
@@ -198,7 +198,7 @@ export function HomePage() {
               meta="Foundation · Agentic · Terminal · Community"
             />
             <TertiaryLink
-              to="/examples"
+              to="/projects"
               label="Example projects"
               meta="Pick a project to follow the Foundation track"
             />

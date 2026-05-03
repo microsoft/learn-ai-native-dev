@@ -5,31 +5,32 @@ import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { StatusBadge } from '@/components/StatusBadge'
 import { ArrowRight, Hammer } from '@phosphor-icons/react'
-import type { ExampleTrack } from '@/data/exampleTracks'
+import type { ProjectShape } from '@/data/projectShapes'
 import { cn } from '@/lib/utils'
 
-interface ExampleCardProps {
-  track: ExampleTrack
+interface ProjectCardProps {
+  shape: ProjectShape
   onSelect: (id: string) => void
   index?: number
 }
 
 const ACCENTS = ['electric', 'violet', 'emerald', 'amber', 'rose', 'cyan'] as const
 
-export function ExampleCard({ track, onSelect, index = 0 }: ExampleCardProps) {
-  const status = track.status ?? 'official'
+export function ProjectCard({ shape, onSelect, index = 0 }: ProjectCardProps) {
+  const status = shape.status ?? 'official'
   const accent = ACCENTS[index % ACCENTS.length]
 
   return (
     <Card
       role="button"
       tabIndex={0}
+      aria-label={`Select ${shape.name} project`}
       data-accent={accent}
-      onClick={() => onSelect(track.id)}
+      onClick={() => onSelect(shape.id)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault()
-          onSelect(track.id)
+          onSelect(shape.id)
         }
       }}
       className={cn(
@@ -47,14 +48,14 @@ export function ExampleCard({ track, onSelect, index = 0 }: ExampleCardProps) {
       <div className="relative flex items-start gap-3">
         {/* Icon tile */}
         <div className="stroke-conic flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border/80 bg-[var(--accent-soft)] text-xl">
-          <span aria-hidden>{track.icon}</span>
+          <span aria-hidden>{shape.icon}</span>
         </div>
 
         <div className="min-w-0 flex-1">
           {/* Title row */}
           <div className="flex items-start justify-between gap-2">
             <h3 className="truncate font-heading text-sm font-semibold leading-tight text-foreground transition-colors group-hover/example:text-[var(--accent-color)]">
-              {track.name}
+              {shape.name}
             </h3>
             <ArrowRight
               size={14}
@@ -69,17 +70,17 @@ export function ExampleCard({ track, onSelect, index = 0 }: ExampleCardProps) {
               variant="secondary"
               className="h-4 px-1.5 text-[10px] font-medium tracking-wide"
             >
-              {track.industry}
+              {shape.industry}
             </Badge>
             {status !== 'official' && <StatusBadge status={status} />}
-            {track.contributedBy && (
-              <span className="text-[10px] text-muted-foreground">by {track.contributedBy}</span>
+            {shape.contributedBy && (
+              <span className="text-[10px] text-muted-foreground">by {shape.contributedBy}</span>
             )}
           </div>
 
           {/* Description */}
           <p className="mt-2 line-clamp-2 text-xs leading-snug text-muted-foreground">
-            {track.description}
+            {shape.description}
           </p>
 
           {/* What you'll build */}
@@ -87,7 +88,7 @@ export function ExampleCard({ track, onSelect, index = 0 }: ExampleCardProps) {
             <Hammer size={12} weight="bold" className="mt-0.5 shrink-0 text-[var(--accent-color)]" />
             <span className="line-clamp-1 text-muted-foreground">
               <span className="font-medium text-foreground">Build: </span>
-              {track.whatYouBuild}
+              {shape.whatYouBuild}
             </span>
           </div>
         </div>

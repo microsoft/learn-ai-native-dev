@@ -5,11 +5,11 @@ mode: "agent"
 
 You are helping a contributor improve existing tutorial content.
 
-Use the [`editor`](.github/agents/editor.agent.md) agent. The change is **surgical** — touch only the file(s) explicitly named.
+Use the [`@author`](.github/agents/author.agent.md) agent in **quick-edit mode**. The change is **surgical** — touch only the file(s) explicitly named.
 
 **Process:**
 
-1. Confirm the target file path and the issue (parse from issue body if pasted).
+1. **Parse the issue body first.** If the user pasted (or linked) an `improve-content.yml` issue body, extract `File path`, `Problem`, and `Suggested fix` directly. Only ask follow-ups for missing fields. This eliminates double-entry between the issue form and this prompt.
 2. Read the file to understand current context.
 3. Apply the minimum edit that fixes the issue. Preserve voice, formatting, and prompt-block conventions (see [tutorial-content.instructions.md](.github/instructions/tutorial-content.instructions.md)).
 4. Run `npm run build` and confirm it succeeds.
