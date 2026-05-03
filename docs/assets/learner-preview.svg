@@ -1,0 +1,127 @@
+<!--
+  Learner-side hero: animated mock of the tutorial catalog UI.
+  Pure SVG, no screen capture. Three audience chips highlight in turn,
+  re-filtering visible cards (representing the catalog's audience filter).
+  Aligned with docs/philosophy.md §4.3 "the problem belongs to the learner".
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="600" height="360" role="img" aria-label="Tutorial preview: filter the catalog by audience and pick a path">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#fafafa"/>
+      <stop offset="100%" stop-color="#f0f0f3"/>
+    </linearGradient>
+    <style><![CDATA[
+      .sans { font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .ink  { fill: #0a0a0a; }
+      .dim  { fill: #888; }
+      .acc  { fill: #ff5500; }
+      .card { fill: #fff; stroke: #e2e2e6; stroke-width: 1; }
+    ]]></style>
+  </defs>
+
+  <!-- browser frame -->
+  <rect x="0" y="0" width="600" height="360" rx="12" fill="url(#bg)"/>
+  <rect x="0" y="0" width="600" height="34" rx="12" fill="#ececef"/>
+  <rect x="0" y="22" width="600" height="12" fill="#ececef"/>
+  <circle cx="20" cy="17" r="5" fill="#ff5f57"/>
+  <circle cx="38" cy="17" r="5" fill="#febc2e"/>
+  <circle cx="56" cy="17" r="5" fill="#28c840"/>
+  <rect x="120" y="9" width="360" height="16" rx="8" fill="#fff" stroke="#dcdce0"/>
+  <text x="300" y="21" text-anchor="middle" class="mono dim" font-size="10">microsoft.github.io/learn-ai-native-dev</text>
+
+  <!-- title -->
+  <text x="32" y="68" class="sans ink" font-size="20" font-weight="700">Pick a path</text>
+  <text x="32" y="86" class="mono dim" font-size="11">filter by who you are</text>
+
+  <!-- audience chips -->
+  <g class="sans" font-size="11">
+    <!-- researcher -->
+    <g>
+      <rect x="32"  y="100" width="86" height="24" rx="12" fill="#fff" stroke="#0a0a0a">
+        <animate attributeName="fill" values="#fff;#ff5500;#fff;#fff;#fff" keyTimes="0;0.05;0.3;0.6;1" dur="9s" repeatCount="indefinite"/>
+        <animate attributeName="stroke" values="#0a0a0a;#ff5500;#0a0a0a;#0a0a0a;#0a0a0a" keyTimes="0;0.05;0.3;0.6;1" dur="9s" repeatCount="indefinite"/>
+      </rect>
+      <text x="75" y="116" text-anchor="middle" class="ink" font-weight="600">
+        researcher
+        <animate attributeName="fill" values="#0a0a0a;#fff;#0a0a0a;#0a0a0a;#0a0a0a" keyTimes="0;0.05;0.3;0.6;1" dur="9s" repeatCount="indefinite"/>
+      </text>
+    </g>
+    <!-- developer -->
+    <g>
+      <rect x="128" y="100" width="80" height="24" rx="12" fill="#fff" stroke="#0a0a0a">
+        <animate attributeName="fill" values="#fff;#fff;#fff;#ff5500;#fff;#fff" keyTimes="0;0.3;0.32;0.36;0.6;1" dur="9s" repeatCount="indefinite"/>
+        <animate attributeName="stroke" values="#0a0a0a;#0a0a0a;#0a0a0a;#ff5500;#0a0a0a;#0a0a0a" keyTimes="0;0.3;0.32;0.36;0.6;1" dur="9s" repeatCount="indefinite"/>
+      </rect>
+      <text x="168" y="116" text-anchor="middle" class="ink" font-weight="600">
+        developer
+        <animate attributeName="fill" values="#0a0a0a;#0a0a0a;#0a0a0a;#fff;#0a0a0a;#0a0a0a" keyTimes="0;0.3;0.32;0.36;0.6;1" dur="9s" repeatCount="indefinite"/>
+      </text>
+    </g>
+    <!-- business -->
+    <rect x="218" y="100" width="74" height="24" rx="12" fill="#fff" stroke="#d2d2d6"/>
+    <text x="255" y="116" text-anchor="middle" class="dim">business</text>
+    <!-- creative -->
+    <g>
+      <rect x="302" y="100" width="74" height="24" rx="12" fill="#fff" stroke="#0a0a0a">
+        <animate attributeName="fill" values="#fff;#fff;#fff;#fff;#fff;#ff5500;#fff" keyTimes="0;0.3;0.6;0.62;0.65;0.66;1" dur="9s" repeatCount="indefinite"/>
+        <animate attributeName="stroke" values="#0a0a0a;#0a0a0a;#0a0a0a;#0a0a0a;#0a0a0a;#ff5500;#0a0a0a" keyTimes="0;0.3;0.6;0.62;0.65;0.66;1" dur="9s" repeatCount="indefinite"/>
+      </rect>
+      <text x="339" y="116" text-anchor="middle" class="ink" font-weight="600">
+        creative
+        <animate attributeName="fill" values="#0a0a0a;#0a0a0a;#0a0a0a;#0a0a0a;#0a0a0a;#fff;#0a0a0a" keyTimes="0;0.3;0.6;0.62;0.65;0.66;1" dur="9s" repeatCount="indefinite"/>
+      </text>
+    </g>
+  </g>
+
+  <!-- card grid: three cards re-skin per audience.
+       researcher (0–30%): Iris Lab highlighted
+       developer  (30–60%): Foundation highlighted
+       creative   (60–95%): Palette Forge highlighted -->
+  <g>
+    <!-- card 1 -->
+    <g>
+      <rect x="32" y="148" width="170" height="180" rx="10" class="card">
+        <animate attributeName="stroke" values="#ff5500;#e2e2e6;#e2e2e6;#e2e2e6" keyTimes="0;0.3;0.6;1" dur="9s" repeatCount="indefinite"/>
+        <animate attributeName="stroke-width" values="2;1;1;1" keyTimes="0;0.3;0.6;1" dur="9s" repeatCount="indefinite"/>
+      </rect>
+      <text x="48" y="174" class="mono dim" font-size="9">PROJECT SHAPE</text>
+      <text x="48" y="196" class="sans ink" font-size="14" font-weight="700">Iris Lab</text>
+      <text x="48" y="216" class="mono dim" font-size="10">EDA · classification</text>
+      <text x="48" y="232" class="mono dim" font-size="10">spec-first ML loop</text>
+      <rect x="48" y="248" width="68" height="18" rx="9" fill="#fff5ef" stroke="#ffb88c"/>
+      <text x="82" y="261" text-anchor="middle" class="mono acc" font-size="9">researcher</text>
+      <text x="48" y="296" class="mono ink" font-size="11" font-weight="600">12 reps · 3 paths</text>
+    </g>
+
+    <!-- card 2 -->
+    <g>
+      <rect x="216" y="148" width="170" height="180" rx="10" class="card">
+        <animate attributeName="stroke" values="#e2e2e6;#e2e2e6;#ff5500;#e2e2e6;#e2e2e6" keyTimes="0;0.3;0.36;0.6;1" dur="9s" repeatCount="indefinite"/>
+        <animate attributeName="stroke-width" values="1;1;2;1;1" keyTimes="0;0.3;0.36;0.6;1" dur="9s" repeatCount="indefinite"/>
+      </rect>
+      <text x="232" y="174" class="mono dim" font-size="9">PATH</text>
+      <text x="232" y="196" class="sans ink" font-size="14" font-weight="700">Foundation</text>
+      <text x="232" y="216" class="mono dim" font-size="10">spec-driven dev</text>
+      <text x="232" y="232" class="mono dim" font-size="10">parts 0–8</text>
+      <rect x="232" y="248" width="64" height="18" rx="9" fill="#fff5ef" stroke="#ffb88c"/>
+      <text x="264" y="261" text-anchor="middle" class="mono acc" font-size="9">developer</text>
+      <text x="232" y="296" class="mono ink" font-size="11" font-weight="600">9 modules · 47 reps</text>
+    </g>
+
+    <!-- card 3 -->
+    <g>
+      <rect x="400" y="148" width="170" height="180" rx="10" class="card">
+        <animate attributeName="stroke" values="#e2e2e6;#e2e2e6;#e2e2e6;#ff5500;#e2e2e6" keyTimes="0;0.3;0.6;0.66;1" dur="9s" repeatCount="indefinite"/>
+        <animate attributeName="stroke-width" values="1;1;1;2;1" keyTimes="0;0.3;0.6;0.66;1" dur="9s" repeatCount="indefinite"/>
+      </rect>
+      <text x="416" y="174" class="mono dim" font-size="9">PROJECT SHAPE</text>
+      <text x="416" y="196" class="sans ink" font-size="14" font-weight="700">Palette Forge</text>
+      <text x="416" y="216" class="mono dim" font-size="10">design tokens</text>
+      <text x="416" y="232" class="mono dim" font-size="10">prompt → palette</text>
+      <rect x="416" y="248" width="60" height="18" rx="9" fill="#fff5ef" stroke="#ffb88c"/>
+      <text x="446" y="261" text-anchor="middle" class="mono acc" font-size="9">creative</text>
+      <text x="416" y="296" class="mono ink" font-size="11" font-weight="600">8 reps · 2 paths</text>
+    </g>
+  </g>
+</svg>
