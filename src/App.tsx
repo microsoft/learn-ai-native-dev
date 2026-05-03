@@ -7,16 +7,18 @@ import { Toaster } from '@/components/ui/sonner'
 import { TrackProvider } from '@/hooks/use-track'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
+import { CommandPalette } from '@/components/CommandPalette'
+import { ShortcutsOverlay } from '@/components/ShortcutsOverlay'
 
 // ─────────────────────────────────────────────────────────────────────────
 // Lazy-loaded pages — keeps initial bundle small.
-// New IA pages live under /learn, /examples, /contribute.
+// New IA pages live under /learn, /projects, /contribute.
 // Legacy pages (LessonPage, AdvancedLessonPage, TerminalLessonPage) are kept
 // to preserve the working content rendering; new /learn/:pathId routes
 // proxy into them via PathRouter below.
 // ─────────────────────────────────────────────────────────────────────────
 const HomePage = lazy(() => import('@/pages/HomePage').then((m) => ({ default: m.HomePage })))
-const ExamplesPage = lazy(() => import('@/pages/ExamplesPage').then((m) => ({ default: m.ExamplesPage })))
+const ProjectsPage = lazy(() => import('@/pages/ProjectsPage').then((m) => ({ default: m.ProjectsPage })))
 const CatalogPage = lazy(() => import('@/pages/CatalogPage').then((m) => ({ default: m.CatalogPage })))
 const ContributeHub = lazy(() => import('@/pages/ContributePages').then((m) => ({ default: m.ContributeHub })))
 const ContributeShapePage = lazy(() => import('@/pages/ContributePages').then((m) => ({ default: m.ContributeShapePage })))
@@ -82,7 +84,7 @@ function PathSummaryRouter() {
  */
 function PageTransition({ children }: { children: React.ReactNode }) {
   const { pathname } = useLocation()
-  // Group key: '/' | '/learn' | '/learn/foundation' | '/examples' | '/contribute' …
+  // Group key: '/' | '/learn' | '/learn/foundation' | '/projects' | '/contribute' …
   // We animate on changes to the first two path segments so cross-section moves
   // (Home ↔ Catalog ↔ Path home) animate, while in-page step navigation does not.
   const segments = pathname.split('/').filter(Boolean)
@@ -117,13 +119,14 @@ function AppContent() {
           <Route path="/learn/:pathId/:moduleId" element={<PathLessonRouter />} />
           <Route path="/learn/:pathId/:moduleId/:stepId" element={<PathLessonRouter />} />
 
-          <Route path="/examples" element={<ExamplesPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/examples" element={<Navigate to="/projects" replace />} />
 
           <Route path="/contribute" element={<ContributeHub />} />
           <Route path="/contribute/:shape" element={<ContributeShapePage />} />
 
           {/* Legacy redirects (back-compat for any external links) */}
-          <Route path="/select-track" element={<Navigate to="/examples" replace />} />
+          <Route path="/select-track" element={<Navigate to="/projects" replace />} />
           <Route path="/lesson/:moduleId" element={<LegacyFoundationRedirect />} />
           <Route path="/lesson/:moduleId/:stepId" element={<LegacyFoundationRedirect />} />
           <Route path="/summary" element={<Navigate to="/learn/foundation/summary" replace />} />
@@ -144,6 +147,8 @@ function AppContent() {
         </PageTransition>
       </Suspense>
       <SiteFooter />
+      <CommandPalette />
+      <ShortcutsOverlay />
     </>
   )
 }

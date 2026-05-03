@@ -187,7 +187,7 @@ export function AdvancedHomePage() {
                 <span className="text-2xl">☁️</span>
                 <div>
                   <h3 className="font-heading text-base font-bold text-foreground">
-                    GitHub Coding Agent
+                    Copilot Coding Agent
                   </h3>
                   <p className="text-sm text-muted-foreground">
                     Delegate tasks via issues while you focus on other work

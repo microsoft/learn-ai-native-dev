@@ -1,0 +1,117 @@
+# Agent PR review
+#
+# On every PR that touches content, harness, or src/, run @reviewer and
+# @docs-auditor via the Copilot SDK. Posts a single structured PR comment
+# and writes individual GitHub Checks (build, a11y, version-currency,
+# content-qa, docs-drift).
+#
+# Replaces the previous "ping @reviewer manually" loop. The same agent
+# definitions in .github/agents/ are loaded — there is no second source of
+# truth.
+
+name: Agent PR review
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'docs/**'
+      - '.github/**'
+      - '!.github/workflows/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+  issues: write
+
+concurrency:
+  group: agent-pr-review-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install website deps
+        run: npm ci
+
+      - name: Build (deterministic baseline for the reviewer)
+        id: build
+        run: npm run build
+
+      - name: Install agent runner
+        run: |
+          npm install --no-save @github/copilot-sdk@^0.3.0
+          npm install --no-save @octokit/rest@^21.0.0
+
+      - name: Run @reviewer
+        id: reviewer
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: node .github/workflows/scripts/run-reviewer.mjs > reviewer-report.md
+
+      - name: Run @docs-auditor
+        id: docs
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: node .github/workflows/scripts/run-docs-auditor.mjs > docs-report.md
+
+      - name: Post combined PR comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const reviewer = fs.readFileSync('reviewer-report.md', 'utf-8');
+            const docs = fs.readFileSync('docs-report.md', 'utf-8');
+            const body = [
+              '## 🤖 Agent review',
+              '',
+              '<details><summary><b>@reviewer</b> — pre-ship suite</summary>',
+              '',
+              reviewer,
+              '',
+              '</details>',
+              '',
+              '<details><summary><b>@docs-auditor</b> — docs/ drift</summary>',
+              '',
+              docs,
+              '',
+              '</details>',
+              '',
+              '_Powered by [@github/copilot-sdk](https://github.com/github/copilot-sdk). Re-run by pushing a new commit._',
+            ].join('\n');
+
+            // Find an existing comment from this bot and update; else create.
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find(c => c.user?.type === 'Bot' && c.body?.startsWith('## 🤖 Agent review'));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }

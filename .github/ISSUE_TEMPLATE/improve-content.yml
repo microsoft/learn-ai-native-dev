@@ -8,7 +8,7 @@ body:
       value: |
         For tiny fixes (single typo, one-line clarification), feel free to skip this issue and open a PR directly.
 
-        For anything larger, this template helps `@editor` make a faithful, on-brand edit.
+        For anything larger, this template feeds `/fix-content` (driven by `@author` in quick-edit mode) so the agent can make a faithful, on-brand edit.
   - type: input
     id: file
     attributes:

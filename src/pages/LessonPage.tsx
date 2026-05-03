@@ -35,6 +35,7 @@ export function LessonPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [activeStepId, setActiveStepId] = useState('')
   const [activeStepIndex, setActiveStepIndex] = useState(0)
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
   useEffect(() => {
     loadTutorialData().then((data) => {
@@ -139,7 +140,7 @@ export function LessonPage() {
 
   // Redirect to track selection if no track selected
   if (!hasSelectedTrack) {
-    return <Navigate to="/examples" replace />
+    return <Navigate to="/projects" replace />
   }
 
   if (isLoading) {
@@ -173,7 +174,7 @@ export function LessonPage() {
       : null
 
   return (
-    <div className="min-h-[calc(100vh-56px)] bg-background">
+    <div className="min-h-[calc(100vh-56px)] bg-background" data-accent="electric">
       <NavigationSidebar
         parts={tutorialData}
         currentPartIndex={currentIndex}
@@ -181,17 +182,22 @@ export function LessonPage() {
         currentStepNumber={currentStepNumber}
         progressPercent={progressPercent}
         onPartSelect={(partId) => navigate(`/learn/foundation/${partId}`)}
+        onCollapseChange={setSidebarCollapsed}
       />
 
-      <div className="px-6 py-8 lg:pl-80 lg:pr-12 lg:py-12 transition-[padding] duration-300">
+      <div
+        className={`px-6 py-8 lg:py-12 lg:pr-12 transition-[padding] duration-300 ${
+          sidebarCollapsed ? 'lg:pl-20' : 'lg:pl-72'
+        }`}
+      >
         <div className="mx-auto max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
         {/* Sticky Progress Header - Shows on all screens when scrolling */}
         <div className="sticky top-14 z-30 mb-6 flex items-center justify-between gap-3 rounded-b-lg border-b border-border bg-background/95 px-4 py-3 backdrop-blur-md shadow-sm">
           <div className="min-w-0 flex-1">
-            <div className="text-xs font-semibold text-foreground truncate">
+            <div className="text-xs font-semibold text-foreground line-clamp-2">
               {part?.number === 0 ? 'Getting Started' : `Part ${part?.number}: ${part?.title}`}
             </div>
-            <div className="text-[11px] text-muted-foreground truncate">
+            <div className="text-[11px] text-muted-foreground line-clamp-2">
               Step {activeStepIndex + 1}: {part?.steps[activeStepIndex]?.title ?? ''}
             </div>
           </div>
