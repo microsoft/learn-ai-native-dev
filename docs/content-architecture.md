@@ -25,7 +25,7 @@ Path  ──►  Module  ──►  Step  ──►  Block (prose | prompt | dia
 | `/learn/:pathId` | Path home (legacy: Foundation/Advanced/Terminal) | Path overview + module list. |
 | `/learn/:pathId/:moduleId/:stepId?` | [`LessonPage`](../src/pages/LessonPage.tsx) family | Render a step. |
 | `/projects` | [`ProjectsPage`](../src/pages/ProjectsPage.tsx) | Pick a Foundation project shape. Audience-filtered. `/examples` redirects here. |
-| `/contribute` | [`ContributePages`](../src/pages/ContributePages.tsx) | Three contribution shapes. |
+| `/contribute` | [`ContributePages`](../src/pages/ContributePages.tsx) | Four contribution shapes (add-example, fix-content, refresh-content, propose-topic). |
 
 Legacy URLs (`/lesson/*`, `/advanced/*`, `/terminal/*`) **redirect** into
 `/learn/:pathId/*` for back-compat. Do not introduce new top-level routes
