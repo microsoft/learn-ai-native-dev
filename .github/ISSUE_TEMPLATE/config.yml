@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 Ask a question / discuss
+    url: https://github.com/microsoft/learn-ai-native-dev/discussions
+    about: For open-ended questions, ideas, and discussion — please use Discussions.
+  - name: 🔒 Security issue
+    url: https://github.com/microsoft/learn-ai-native-dev/security/policy
+    about: Report security vulnerabilities privately via the Security policy.

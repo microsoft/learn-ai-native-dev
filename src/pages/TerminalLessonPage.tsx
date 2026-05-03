@@ -106,7 +106,7 @@ export function TerminalLessonPage() {
   const moduleLetter = String.fromCharCode(69 + module.number) // F, G, H
 
   return (
-    <div className="terminal-theme min-h-[calc(100vh-56px)] bg-[#0b0d0c] relative overflow-hidden">
+    <div className="terminal-theme min-h-[calc(100vh-56px)] bg-[#0b0d0c] relative overflow-hidden" data-accent="emerald">
       {/* Scanlines */}
       <div className="pointer-events-none fixed inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(57,232,117,0.015)_2px,rgba(57,232,117,0.015)_4px)] z-10" />
       {/* Grid overlay */}
@@ -117,7 +117,7 @@ export function TerminalLessonPage() {
       {/* Sidebar */}
       <aside className="hidden lg:fixed lg:left-0 lg:top-14 lg:flex lg:h-[calc(100vh-56px)] lg:w-72 lg:flex-col lg:border-r lg:border-[#39e875]/10 lg:bg-[#0b0d0c]/95 lg:backdrop-blur-sm z-30">
         <div className="flex flex-col gap-1 p-4">
-          <Link to="/terminal" className="text-sm text-[#3abf65] hover:text-[#39e875] transition-colors flex items-center gap-2 mb-4 font-mono">
+          <Link to="/learn/terminal" className="text-sm text-[#3abf65] hover:text-[#39e875] transition-colors flex items-center gap-2 mb-4 font-mono">
             <ArrowLeft size={14} />
             Terminal Track
           </Link>
@@ -128,7 +128,7 @@ export function TerminalLessonPage() {
             return (
               <button
                 key={mod.id}
-                onClick={() => navigate(`/terminal/module/${mod.id}`)}
+                onClick={() => navigate(`/learn/terminal/${mod.id}`)}
                 className={`flex items-center gap-3 rounded px-3 py-2 text-left transition-colors font-mono ${
                   isActive
                     ? 'bg-[#39e875]/10 text-[#39e875] border border-[#39e875]/20'
@@ -148,7 +148,7 @@ export function TerminalLessonPage() {
           })}
 
           <Link
-            to="/terminal/summary"
+            to="/learn/terminal/summary"
             className="flex items-center gap-3 rounded px-3 py-2 text-left text-[#6b8a75] hover:bg-[#39e875]/5 hover:text-[#a3c4b0] transition-colors mt-2 font-mono border border-transparent"
           >
             <div className="flex h-7 w-7 items-center justify-center rounded border border-[#39e875]/10 bg-[#39e875]/5 text-xs font-bold text-[#5a8f6a]">
@@ -172,16 +172,16 @@ export function TerminalLessonPage() {
         </div>
       </aside>
 
-      <div className="relative z-20 px-6 py-8 lg:pl-80 lg:pr-12 lg:py-12 transition-[padding] duration-300">
+      <div className="relative z-20 px-6 py-8 lg:pl-72 lg:pr-12 lg:py-12 transition-[padding] duration-300">
         <div className="mx-auto max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
           {/* Sticky Progress Header */}
           <div className="sticky top-14 z-30 mb-6 flex items-center justify-between gap-3 rounded-b-lg border-b border-[#39e875]/15 bg-[#0b0d0c]/95 px-4 py-3 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
             <div className="min-w-0 flex-1">
-              <div className="text-xs font-semibold text-[#e8f0eb] truncate flex items-center gap-2 font-mono">
-                <Terminal className="text-[#39e875]" size={12} weight="fill" />
+              <div className="text-xs font-semibold text-[#e8f0eb] line-clamp-2 flex items-center gap-2 font-mono">
+                <Terminal className="text-[#39e875] shrink-0" size={12} weight="fill" />
                 Module {moduleLetter}: {module.title}
               </div>
-              <div className="text-[11px] text-[#6b8a75] truncate font-mono">
+              <div className="text-[11px] text-[#6b8a75] line-clamp-2 font-mono">
                 Step {activeStepIndex + 1}: {module.steps[activeStepIndex]?.title ?? ''}
               </div>
             </div>
@@ -253,7 +253,7 @@ export function TerminalLessonPage() {
             {prevModule ? (
               <Button
                 variant="outline"
-                onClick={() => navigate(`/terminal/module/${prevModule.id}`)}
+                onClick={() => navigate(`/learn/terminal/${prevModule.id}`)}
                 className="border-[#39e875]/15 bg-transparent text-[#e8f0eb] hover:bg-[#39e875]/10 hover:text-[#e8f0eb] font-mono"
               >
                 <ArrowLeft className="mr-2" size={18} weight="bold" />
@@ -279,7 +279,7 @@ export function TerminalLessonPage() {
             {nextModule ? (
               <Button
                 variant="outline"
-                onClick={() => navigate(`/terminal/module/${nextModule.id}`)}
+                onClick={() => navigate(`/learn/terminal/${nextModule.id}`)}
                 className="border-[#39e875]/15 bg-transparent text-[#e8f0eb] hover:bg-[#39e875]/10 hover:text-[#e8f0eb] font-mono"
               >
                 <div className="text-right">
@@ -291,7 +291,7 @@ export function TerminalLessonPage() {
             ) : (
               <Button
                 variant="outline"
-                onClick={() => navigate('/terminal/summary')}
+                onClick={() => navigate('/learn/terminal/summary')}
                 className="border-[#39e875]/15 bg-transparent text-[#e8f0eb] hover:bg-[#39e875]/10 hover:text-[#e8f0eb] font-mono"
               >
                 <div className="text-right">

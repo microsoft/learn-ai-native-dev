@@ -21,7 +21,7 @@ export function SummaryPage() {
   // Redirect to track selection if no track selected
   useEffect(() => {
     if (!hasSelectedTrack) {
-      navigate('/select-track', { replace: true })
+      navigate('/projects', { replace: true })
     }
   }, [hasSelectedTrack, navigate])
 
@@ -160,7 +160,7 @@ export function SummaryPage() {
         {/* Navigation Footer */}
         <footer className="mt-16 flex items-center justify-between border-t border-white/10 pt-8">
           {lastLesson ? (
-            <Link to={`/lesson/${lastLesson.id}`}>
+            <Link to={`/learn/foundation/${lastLesson.id}`}>
               <Button
                 variant="outline"
                 className="border-white/10 bg-transparent text-foreground hover:bg-white/5 hover:text-foreground"

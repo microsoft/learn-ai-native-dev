@@ -1,6 +1,6 @@
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { exampleTracks } from '@/data/exampleTracks'
+import { projectShapes } from '@/data/projectShapes'
 import { useTrack } from '@/hooks/use-track'
 import { useNavigate } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
@@ -12,7 +12,7 @@ export function TrackSelector() {
 
   const handleSelectTrack = (trackId: string) => {
     setSelectedTrack(trackId)
-    navigate('/lesson/getting-started/what-youll-learn')
+    navigate('/learn/foundation/getting-started/what-youll-learn')
   }
 
   return (
@@ -30,7 +30,7 @@ export function TrackSelector() {
 
         {/* Track Cards */}
         <div className="grid gap-4 mb-12">
-          {exampleTracks.map((track) => (
+          {projectShapes.map((track) => (
             <Card 
               key={track.id}
               className="group hover:shadow-lg transition-all duration-200 hover:border-primary/50 cursor-pointer overflow-hidden"

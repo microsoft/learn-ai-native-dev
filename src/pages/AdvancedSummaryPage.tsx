@@ -165,7 +165,7 @@ export function AdvancedSummaryPage() {
                 <h4 className="font-semibold text-foreground mb-3">Advanced Track</h4>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li>• MCP servers (fetch, quotes, weather, github)</li>
-                  <li>• GitHub Coding Agent workflow</li>
+                  <li>• Copilot coding agent workflow</li>
                   <li>• Review orchestrator + specialists</li>
                   <li>• Test generation skill</li>
                   <li>• DevDash CLI with live data</li>
@@ -177,7 +177,7 @@ export function AdvancedSummaryPage() {
 
         {/* Navigation Footer */}
         <footer className="mt-16 flex items-center justify-between border-t border-amber-500/10 pt-8">
-          <Link to="/advanced/module/module-e">
+          <Link to="/learn/agentic/module-e">
             <Button
               variant="outline"
               className="border-amber-500/20 bg-transparent text-foreground hover:bg-amber-500/5 hover:text-foreground"

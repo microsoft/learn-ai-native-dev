@@ -2,6 +2,12 @@
 
 This file provides context and guidelines for AI agents (GitHub Copilot, Claude, etc.) working on this codebase.
 
+> **Two surfaces, two homes.** [`docs/`](docs) is the design spec for the
+> website-as-product (what we teach, how content is structured, principles).
+> [`.github/`](.github) is the build harness (instructions, prompt files,
+> skills, custom agents, hooks) for *editing* the website. Start with
+> [`docs/README.md`](docs/README.md) and [`docs/harness.md`](docs/harness.md).
+
 ## Project Overview
 
 **AI-Native Development Tutorial Website** - An interactive tutorial teaching anyone how to accelerate their workflow using AI-Native development techniques.
@@ -12,10 +18,7 @@ Teach developers — from beginners to professionals — how to leverage AI assi
 
 ### Live Deployment
 
-- **Production URL**: https://lemon-mud-0ea992703.4.azurestaticapps.net
-- **Hosting**: Azure Static Web Apps
-- **Resource Group**: `tutorials`
-- **App Name**: `learn-ai-first-dev`
+- **Hosting**: GitHub Pages (deployed via `.github/workflows/deploy-pages.yml` on push to `main`)
 
 ## Tech Stack
 
@@ -31,15 +34,33 @@ Teach developers — from beginners to professionals — how to leverage AI assi
 ```
 src/
 ├── components/       # Reusable UI components
-│   └── ui/          # shadcn/ui components
-├── content/         # Tutorial markdown content
-│   └── tutorial/    # Part 0-8 tutorial files
-├── data/            # Static data and content mappings
-├── hooks/           # Custom React hooks
-├── lib/             # Utility functions
-├── pages/           # Page components (HomePage, LessonPage, SummaryPage)
-└── styles/          # Global styles and theme
+│   ├── ui/          # shadcn/ui components
+│   └── diagrams/    # Tutorial diagrams
+├── content/          # Tutorial markdown content
+│   ├── tutorial/    # Foundation path (Parts 0-8)
+│   ├── advanced/    # Agentic Workflows path (Modules A-E)
+│   ├── terminal/    # Terminal & CLI path (Modules F-H)
+│   └── community/   # Community-contributed paths (each w/ path.json)
+├── data/             # Static data and content mappings
+│   ├── paths.ts            # Official path registry (single source of truth)
+│   ├── communityLoader.ts  # Loads src/content/community/*/path.json
+│   └── projectShapes.ts   # Foundation project shapes (formerly exampleTracks)
+├── hooks/            # Custom React hooks
+├── lib/              # Utility functions
+├── pages/            # Page components (Home, Catalog, Examples, Lesson, Contribute…)
+└── styles/           # Global styles and theme
 ```
+
+## Information Architecture
+
+- `/` — Landing with three entry points
+- `/learn` — Catalog of all paths (filterable; Official + Community)
+- `/learn/:pathId` — Path home (currently routed into legacy Home pages per path)
+- `/learn/:pathId/:moduleId/:stepId?` — Lesson
+- `/projects` — Pick a project shape (audience-filtered). `/examples` redirects here.
+- `/contribute` — Contribution hub with three shapes (add-example, fix-content, propose-topic)
+
+Legacy URLs (`/lesson/*`, `/advanced/*`, `/terminal/*`) redirect into `/learn/:pathId/*` for back-compat.
 
 ## Experience Qualities
 
@@ -83,25 +104,14 @@ The design should feel like a modern, premium developer tool—professional but 
 
 ## Deployment
 
-### Manual Deployment to Azure Static Web Apps
+Deployment to GitHub Pages is automated via GitHub Actions (`.github/workflows/deploy-pages.yml`). Every push to `main` builds the site and publishes it.
 
-GitHub Actions hosted runners are disabled for this repository. Deploy manually:
+To preview a build locally:
 
-```powershell
-# 1. Build the project
+```bash
 npm run build
-
-# 2. Get deployment token
-$token = az staticwebapp secrets list --name learn-ai-first-dev --resource-group tutorials --query "properties.apiKey" -o tsv
-
-# 3. Deploy to Azure
-swa deploy ./dist --deployment-token $token --env production
+npm run preview
 ```
-
-### Prerequisites
-
-- Azure CLI (`az login`)
-- SWA CLI (`npm install -g @azure/static-web-apps-cli`)
 
 ## Development Commands
 
@@ -118,3 +128,6 @@ npm run lint     # Run ESLint
 2. **Maintain consistency** - Follow established conventions
 3. **Test responsively** - Check both desktop and mobile views
 4. **Build before committing** - Run `npm run build` to catch errors
+5. **Keep docs in sync** - After structural changes (paths, modules, diagrams,
+   custom syntax, harness files), run `@docs-auditor` to catch drift between
+   the code and `docs/`.

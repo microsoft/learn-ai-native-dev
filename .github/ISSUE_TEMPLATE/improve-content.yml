@@ -1,0 +1,51 @@
+name: ✏️ Improve existing content
+description: Typos, clarifications, missing context, or new diagrams. Surgical edits to a known file.
+title: "[Improve] <short description>"
+labels: ["contribution", "improvement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For tiny fixes (single typo, one-line clarification), feel free to skip this issue and open a PR directly.
+
+        For anything larger, this template feeds `/fix-content` (driven by `@author` in quick-edit mode) so the agent can make a faithful, on-brand edit.
+  - type: input
+    id: file
+    attributes:
+      label: File path
+      placeholder: "e.g., src/content/tutorial/part-3-teach-ai-your-rules.md"
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What's wrong?
+      description: Quote the current text and explain the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: Suggested fix (optional)
+      description: A concrete rewrite if you have one. Otherwise an agent can draft it.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of change
+      options:
+        - typo / grammar
+        - clarification / wording
+        - factual correction
+        - missing context
+        - new diagram or visual
+        - reorganize / split / merge
+        - other
+    validations:
+      required: true
+  - type: checkboxes
+    id: agreements
+    attributes:
+      label: Agreements
+      options:
+        - label: I have read [CONTRIBUTING.md](../blob/main/.github/CONTRIBUTING.md).
+          required: true

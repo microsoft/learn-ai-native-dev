@@ -13,6 +13,7 @@ interface NavigationSidebarProps {
   currentStepNumber: number
   progressPercent: number
   onPartSelect?: (partId: string) => void
+  onCollapseChange?: (collapsed: boolean) => void
 }
 
 export function NavigationSidebar({
@@ -21,12 +22,17 @@ export function NavigationSidebar({
   totalSteps,
   currentStepNumber,
   progressPercent,
-  onPartSelect
+  onPartSelect,
+  onCollapseChange,
 }: NavigationSidebarProps) {
   const [isMobile, setIsMobile] = useState(false)
   const [open, setOpen] = useState(false)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const navRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    onCollapseChange?.(isCollapsed)
+  }, [isCollapsed, onCollapseChange])
 
   useEffect(() => {
     const checkMobile = () => {
@@ -99,7 +105,7 @@ export function NavigationSidebar({
         </div>
       </div>
 
-      <ScrollArea className="h-[calc(100vh-260px)]">
+      <ScrollArea className="h-[calc(100vh-16rem)] min-h-0">
         <nav className="space-y-1 px-2" ref={navRef}>
           {parts.map((part, partIndex) => (
             <div key={part.id} className="space-y-1">
@@ -147,7 +153,7 @@ export function NavigationSidebar({
           <Button
             variant="outline"
             size="icon"
-            className="fixed left-4 top-[72px] z-40 lg:hidden shadow-lg border-border bg-background/95 backdrop-blur-sm hover:bg-muted"
+            className="fixed left-4 top-14 z-50 lg:hidden shadow-lg border-border bg-background/95 backdrop-blur-sm hover:bg-muted"
             aria-label="Open navigation menu"
           >
             <List size={24} />
@@ -168,7 +174,7 @@ export function NavigationSidebar({
           variant="outline"
           size="icon"
           onClick={() => setIsCollapsed(false)}
-          className="fixed left-4 top-[72px] z-40 hidden lg:flex shadow-lg border-border bg-background/95 backdrop-blur-sm hover:bg-muted"
+          className="fixed left-4 top-[72px] z-50 hidden lg:flex shadow-lg border-border bg-background/95 backdrop-blur-sm hover:bg-muted"
           aria-label="Open navigation"
         >
           <CaretRight size={20} weight="bold" />
@@ -176,9 +182,9 @@ export function NavigationSidebar({
       )}
       
       {/* Expanded sidebar */}
-      <aside 
+      <aside
         className={cn(
-          "fixed left-0 top-14 hidden h-[calc(100vh-56px)] w-80 border-r border-border bg-card p-6 lg:block transition-transform duration-300",
+          "fixed left-0 top-14 z-30 hidden h-[calc(100vh-56px)] w-72 border-r border-border bg-card p-6 lg:block transition-transform duration-300",
           isCollapsed && "-translate-x-full"
         )}
       >

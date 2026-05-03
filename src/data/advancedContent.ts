@@ -150,7 +150,7 @@ export const advancedSummaryContent = {
     description: "You've mastered advanced techniques that extend AI beyond your codebase:",
     steps: [
       'CONNECT external data → MCP servers (tools, resources, prompts) fetch APIs, databases, services',
-      'DELEGATE async tasks → GitHub Coding Agent works while you focus elsewhere',
+      'DELEGATE async tasks → Copilot coding agent works while you focus elsewhere',
       'ORCHESTRATE specialists → Multiple agents collaborate on complex reviews',
       'GENERATE tests → AI creates comprehensive test suites with edge cases',
       'INTEGRATE everything → MCP + Agents + Tests = Professional-grade workflow'
@@ -212,7 +212,7 @@ export const advancedSummaryContent = {
     items: [
       'MCP servers extend AI with tools (actions), resources (data), and prompts (templates)',
       'Secure inputs keep API keys out of code; MCP Inspector debugs servers visually',
-      'GitHub Coding Agent handles async development through issue → plan → PR workflow',
+      'Copilot coding agent handles async development through issue → plan → PR workflow',
       'Agent orchestration coordinates specialists for comprehensive reviews',
       'AI test generation catches edge cases humans typically miss',
       'Copilot Edits, Vision, and model selection enhance your daily workflow',

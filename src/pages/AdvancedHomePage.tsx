@@ -101,7 +101,7 @@ export function AdvancedHomePage() {
               {advancedData.map((module) => (
                 <Link
                   key={module.id}
-                  to={`/advanced/module/${module.id}`}
+                  to={`/learn/agentic/${module.id}`}
                   className="group block"
                 >
                   <Card className="border-neutral-6 bg-neutral-2/50 p-5 transition-all hover:border-amber-500/30 hover:bg-amber-500/5">
@@ -135,7 +135,7 @@ export function AdvancedHomePage() {
               ))}
 
               {/* Summary Link */}
-              <Link to="/advanced/summary" className="group block">
+              <Link to="/learn/agentic/summary" className="group block">
                 <Card className="border-neutral-6 bg-neutral-2/50 p-5 transition-all hover:border-amber-500/30 hover:bg-amber-500/5">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
@@ -187,7 +187,7 @@ export function AdvancedHomePage() {
                 <span className="text-2xl">☁️</span>
                 <div>
                   <h3 className="font-heading text-base font-bold text-foreground">
-                    GitHub Coding Agent
+                    Copilot Coding Agent
                   </h3>
                   <p className="text-sm text-muted-foreground">
                     Delegate tasks via issues while you focus on other work
@@ -227,7 +227,7 @@ export function AdvancedHomePage() {
         {/* Start Button */}
         <div className="text-center mb-12">
           {advancedData.length > 0 && (
-            <Link to={`/advanced/module/${advancedData[0].id}`}>
+            <Link to={`/learn/agentic/${advancedData[0].id}`}>
               <Button size="lg" className="text-lg px-8 py-6 bg-amber-600 hover:bg-amber-700 text-white">
                 Start Advanced Track
                 <ArrowRight className="ml-2" size={20} weight="bold" />
@@ -236,11 +236,7 @@ export function AdvancedHomePage() {
           )}
         </div>
 
-        {/* Footer */}
-        <footer className="text-center">
-          <div className="mx-auto mb-6 h-px w-32 bg-gradient-to-r from-transparent via-neutral-6 to-transparent" />
-          <p className="text-sm text-muted-foreground">Created by Vahid Rostami • 11057475+Vahidrostami@users.noreply.github.com</p>
-        </footer>
+
       </div>
     </div>
   )
