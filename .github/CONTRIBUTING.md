@@ -98,11 +98,36 @@ Do **not** report security vulnerabilities through public GitHub issues. See [SE
 
 ## Getting Started Locally
 
+We follow the standard **fork & pull request** workflow used by most open-source projects on GitHub.
+
 ```bash
-git clone https://github.com/microsoft/learn-ai-native-dev.git
+# 1. Fork microsoft/learn-ai-native-dev on GitHub (click "Fork" in the UI)
+
+# 2. Clone YOUR fork
+git clone https://github.com/<your-username>/learn-ai-native-dev.git
 cd learn-ai-native-dev
+
+# 3. Add the upstream remote so you can pull in latest changes
+git remote add upstream https://github.com/microsoft/learn-ai-native-dev.git
+
+# 4. Install and run
 npm install
 npm run dev
+
+# 5. Create a topic branch, commit your changes, push to YOUR fork
+git checkout -b my-change
+git push origin my-change
+
+# 6. Open a Pull Request from your fork → microsoft/learn-ai-native-dev (main)
+```
+
+To keep your fork up to date:
+
+```bash
+git fetch upstream
+git checkout main
+git merge upstream/main
+git push origin main
 ```
 
 Before opening a PR:
@@ -111,6 +136,8 @@ Before opening a PR:
 npm run build   # must succeed
 npm run lint    # should be clean
 ```
+
+You do **not** need write access to the `microsoft` org — PRs from forks are how all external contributions are merged.
 
 ## Code Standards
 
