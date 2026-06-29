@@ -7,9 +7,9 @@
 name: Instructions linter
 
 on:
-  schedule:
-    # 09:00 UTC on the 15th of every month.
-    - cron: '0 9 15 * *'
+  # Scheduled run disabled: this agent harness needs a working
+  # @github/copilot-sdk integration (the CI scripts import a `runAgent`
+  # export that does not exist). Re-enable the cron once that is wired up.
   workflow_dispatch:
 
 permissions:
