@@ -12,13 +12,11 @@
 name: Agent PR review
 
 on:
-  pull_request:
-    branches: [main]
-    paths:
-      - 'src/**'
-      - 'docs/**'
-      - '.github/**'
-      - '!.github/workflows/**'
+  # PR trigger disabled: this agent harness needs a working
+  # @github/copilot-sdk integration (the CI scripts import a `runAgent`
+  # export that does not exist). Re-enable the pull_request trigger once
+  # that is wired up.
+  workflow_dispatch:
 
 permissions:
   contents: read
